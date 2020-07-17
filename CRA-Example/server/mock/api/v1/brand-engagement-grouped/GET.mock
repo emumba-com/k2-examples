@@ -1,0 +1,26 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+
+
+[
+  {
+    "name":"Last Month",
+    "data":[
+      {"y":8000,"x":"Facebook"},
+      {"y":8000,"x":"Instagram"},
+      {"y":15000,"x":"Twitter"}
+
+    ]
+  },
+  
+  {
+    "name":"This Month",
+    "data":[
+      {"y":13000,"x":"Facebook"},
+      {"y":13000,"x":"Instagram"},
+      {"y":4000,"x":"Twitter"}
+    ]
+  }
+
+]

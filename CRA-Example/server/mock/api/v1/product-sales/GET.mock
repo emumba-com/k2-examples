@@ -1,0 +1,123 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+
+
+{
+  "nodes": [
+    {
+      "id": "Node1",
+      "label": "America",
+      "level": "Region",
+      "color": "#30b1d9"
+    },
+    {
+      "id": "Node2",
+      "label": "Africa",
+      "level": "Region",
+      "color": "#b177bb"
+    },
+    {
+      "id": "Node3",
+      "label": "Asia Pacific",
+      "level": "Region",
+      "color": "#7bb844"
+    },
+    {
+      "id": "Node4",
+      "label": "Air Jordan",
+      "level": "Product",
+      "color": "#5579ae"
+    },
+    {
+      "id": "Node5",
+      "label": "Blazers",
+      "level": "Product",
+      "color": "#5579ae"
+    },
+    {
+      "id": "Node6",
+      "label": "Air Max",
+      "level": "Product",
+      "color": "#5579ae"
+    },
+    {
+      "id": "Node7",
+      "label": "Nike Mag",
+      "level": "Product",
+      "color": "#5579ae"
+    },
+    {
+      "id": "Node8",
+      "label": "Nike Plus",
+      "level": "Product",
+      "color": "#5579ae"
+    }
+  ],
+  "links": [
+    {
+      "id": "Link1",
+      "sourceId": "Node1",
+      "targetId": "Node4",
+      "value": 25,
+      "color": "#30b1d9"
+    },
+    {
+      "id": "Link2",
+      "sourceId": "Node1",
+      "targetId": "Node5",
+      "value": 25,
+      "color": "#30b1d9"
+    },
+    {
+      "id": "Link3",
+      "sourceId": "Node2",
+      "targetId": "Node4",
+      "value": 15,
+      "color": "#b177bb"
+    },
+    {
+      "id": "Link4",
+      "sourceId": "Node2",
+      "targetId": "Node5",
+      "value": 20,
+      "color": "#b177bb"
+    },
+    {
+      "id": "Link5",
+      "sourceId": "Node2",
+      "targetId": "Node6",
+      "value": 15,
+      "color": "#b177bb"
+    },
+    {
+      "id": "Link6",
+      "sourceId": "Node3",
+      "targetId": "Node5",
+      "value": 10,
+      "color": "#7bb844"
+    },
+    {
+      "id": "Link7",
+      "sourceId": "Node3",
+      "targetId": "Node6",
+      "value": 25,
+      "color": "#7bb844"
+    },
+    {
+      "id": "Link8",
+      "sourceId": "Node3",
+      "targetId": "Node7",
+      "value": 40,
+      "color": "#7bb844"
+    },
+    {
+      "id": "Link9",
+      "sourceId": "Node3",
+      "targetId": "Node8",
+      "value": 30,
+      "color": "#7bb844"
+    }
+    
+  ]
+ }
