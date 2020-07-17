@@ -1,5 +1,4 @@
-export const getURL = (route: string) =>
-  `https://demos.emumba.com:7000/api/v1/${route}`;
+export const getURL = (route: string) => `/api/v1/${route}`;
 
 export const fullMonthNames = [
   "January",
