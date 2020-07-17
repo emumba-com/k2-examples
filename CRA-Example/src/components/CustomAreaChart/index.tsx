@@ -29,7 +29,8 @@ const CustomAreaChart = () => {
     if (ref.current) {
       const { data, setViewData } = ref.current;
       const viewData = data.reduce((result, datum) => {
-        const { data: pointsData } = datum;f        const filteredData = value
+        const { data: pointsData } = datum;
+        const filteredData = value
           ? pointsData.filter(({ x }) => quarters[value] === getQuarter(x))
           : pointsData;
         return [...result, { ...datum, data: filteredData }];
