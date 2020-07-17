@@ -25,7 +25,17 @@ export default function Header() {
         </div>
         <div style={{ color: "white" }} className="header-actions">
           <div className="icons-wrapper">
-            <Icon className="action-icon" type="github" theme="filled" />
+            <Icon
+              className="action-icon"
+              type="github"
+              theme="filled"
+              onClick={() =>
+                window.open(
+                  "https://github.com/emumba-com/k2-examples/tree/master/CRA-Example",
+                  "_blank",
+                )
+              }
+            />
             <Icon className="action-icon" type="search" />
             <Icon className="action-icon" type="bell" theme="filled" />
             <Icon className="action-icon" type="setting" theme="filled" />
