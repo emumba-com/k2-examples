@@ -1,0 +1,34 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+
+
+[{
+	"name": "Brand Engagement Overview",
+	"data": [{
+			"y": 30,
+			"x": "Facebook",
+      "labelColor":"#777777"
+		},
+		{
+			"y": 25,
+			"x": "Instagram",
+      "labelColor":"#777777"
+		},
+		{
+			"y": 28,
+			"x": "Twitter",
+      "labelColor":"#777777"
+		},
+		{
+			"y": 10,
+			"x": "Pinterest",
+      "labelColor":"#777777"
+		},
+		{
+			"y": 26,
+			"x": "YouTube",
+      "labelColor":"#777777"
+		}
+	]
+}]

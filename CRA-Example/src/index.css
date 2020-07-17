@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "OpenSans-Regular";
+  src: local("OpenSans-Regular"),
+    url(./fonts/OpenSans-Regular.ttf) format("truetype");
+}
+
+body {
+  margin: 0;
+  font-family: "OpenSans-Regular";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}

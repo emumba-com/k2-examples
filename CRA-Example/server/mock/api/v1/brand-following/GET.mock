@@ -1,0 +1,42 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+
+
+[
+  {
+    "name":"Blazer",
+    "color":"#f1bf43",
+    "data":[
+      {"y":"Facebook","x": 20},
+      {"y":"Instagram","x": 50},
+      {"y":"Twitter","x": 10},
+      {"y":"YouTube","x": 20}
+
+    ]
+  },
+  
+  {
+    "name":"Air Max",
+    "color":"#2659a4",  
+    "data":[
+       {"y":"Facebook","x": 35},
+       {"y":"Instagram","x": 40},
+       {"y":"Twitter","x": 30},
+       {"y":"YouTube","x": 35}
+    ]
+  }
+  ,
+  
+  {
+    "name":"Jordan",
+    "color":"#30b1d9",
+    "data":[
+        {"y":"Facebook","x": 10},
+        {"y":"Instagram","x": 10},
+        {"y":"Twitter","x": 30},
+        {"y":"YouTube","x": 50}
+    ]
+  }
+
+]
