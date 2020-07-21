@@ -13,29 +13,45 @@ import CustomDrawer from "./subComponents/CustomDrawer";
 import CustomSelect from "./subComponents/CustomSelect";
 import { CardStyled } from "./customAreaChart.style";
 
+const applyFilter = (data, selectedRegions, selectedQuarter) => {
+  const filteredData =
+    selectedRegions.length > 0
+      ? data.filter(({ name }) => selectedRegions.includes(name))
+      : data;
+  return selectedQuarter
+    ? filteredData.reduce((result, datum) => {
+        const { data: pointsData } = datum;
+        const filteredData = pointsData.filter(
+          ({ x }) => quarters[selectedQuarter] === getQuarter(x),
+        );
+        return [...result, { ...datum, data: filteredData }];
+      }, [])
+    : filteredData;
+};
+
 const CustomAreaChart = () => {
   const [open, OpenDrawer] = React.useState(false);
+  const [selectedRegion, setRegion] = React.useState([]);
+  const [selectedQuarter, setQuarter] = React.useState(undefined);
   const ref = React.useRef(null);
+  const hasFilters =
+    ref.current && ref.current.status !== "LOADING"
+      ? ref.current.viewData !== ref.current.data
+      : false;
 
   const handleRegionFilter = value => {
     if (ref.current) {
       const { data, setViewData } = ref.current;
-      const filteredData = data.filter(({ name }) => value.includes(name));
-      const viewData = filteredData.length > 0 ? filteredData : data;
+      const viewData = applyFilter(data, value, selectedQuarter);
+      setRegion(value);
       setViewData(viewData);
     }
   };
   const handleQuarterFilter = value => {
     if (ref.current) {
       const { data, setViewData } = ref.current;
-      const viewData = data.reduce((result, datum) => {
-        const { data: pointsData } = datum;
-        const filteredData = value
-          ? pointsData.filter(({ x }) => quarters[value] === getQuarter(x))
-          : pointsData;
-        return [...result, { ...datum, data: filteredData }];
-      }, []);
-
+      const viewData = applyFilter(data, selectedRegion, value);
+      setQuarter(value);
       setViewData(viewData);
     }
   };
@@ -48,7 +64,13 @@ const CustomAreaChart = () => {
         body: "card-body",
       }}
       title="Sales Overview"
-      actions={<Icon type="filter" onClick={() => OpenDrawer(true)} />}
+      actions={
+        <Icon
+          type="filter"
+          theme={hasFilters ? "twoTone" : "outlined"}
+          onClick={() => OpenDrawer(true)}
+        />
+      }
     >
       <CustomDrawer open={open} onClose={() => OpenDrawer(false)}>
         <CustomSelect
