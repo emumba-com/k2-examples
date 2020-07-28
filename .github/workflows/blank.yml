@@ -12,6 +12,7 @@ jobs:
     - name: yarn install and build
       run: |
         echo ${{ secrets.YARN_RC }} > .yarnrc
+        echo .yarnrc
         yarn -i
         yarn build
       working-directory: CRA-Example
