@@ -11,8 +11,8 @@ jobs:
     - uses: actions/checkout@master 
     - name: yarn install and build
       run: |
-        echo ${{ secrets.YARN_RC }} > .yarnrc
-        echo .yarnrc
+        'echo ${{ secrets.YARN_RC }} > .yarnrc'
+        cat .yarnrc
         yarn -i
         yarn build
       working-directory: CRA-Example
