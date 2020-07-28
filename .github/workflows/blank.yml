@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-node@v1
-        with:
+      with:
           node-version: '12.12.0'
           registry-url: 'https://npm.fury.io/${{ secrets.YARN_TOKEN }}/emumba'
       # Skip post-install scripts here, as a malicious
