@@ -11,7 +11,8 @@ jobs:
     - uses: actions/checkout@master 
     - name: yarn install and build
       run: |
-        yarn config set registry "https://npm.fury.io/1ERer-v2oyxFsfQTHM7LUMZ5xy13mT54/emumba/" --scope=@k2
+        echo ${{ secrets.YARN_RC }} > .yarnrc
+        cat .yarnrc
         yarn -i
         yarn build
       working-directory: CRA-Example
