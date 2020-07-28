@@ -8,14 +8,20 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master 
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@v1
+        with:
+          node-version: '12.12.0'
+          registry-url: 'https://npm.fury.io/${{ secrets.YARN_TOKEN }}/emumba'
+      # Skip post-install scripts here, as a malicious
+      # script could steal NODE_AUTH_TOKEN.
     - name: yarn install and build
       run: |
-        echo ${{ secrets.YARN_RC }} > .yarnrc
-        cat .yarnrc
         yarn -i
         yarn build
       working-directory: CRA-Example
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.YARN_TOKEN }}
     - uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
