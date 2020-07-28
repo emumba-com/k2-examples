@@ -9,14 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - name: Use Node.js ${{ matrix.node-version }}
     - uses: actions/setup-node@v1
       with:
           node-version: '12.12.0'
-          registry-url: 'https://npm.fury.io/${{ secrets.YARN_TOKEN }}/emumba'
-      # Skip post-install scripts here, as a malicious
-      # script could steal NODE_AUTH_TOKEN.
     - name: yarn install and build
       run: |
+        echo '"@k2:registry""https://npm.fury.io/${{ secrets.YARN_TOKEN }}/emumba"' > .npmrc
+        echo '"@k2:registry""https://npm.fury.io/${{ secrets.YARN_TOKEN }}/emumba"' > .yarnrc
+        cat .npmrc
+        cat .yarnrc
         yarn -i
         yarn build
       working-directory: CRA-Example
