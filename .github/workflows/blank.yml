@@ -9,10 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - run: cd CRA-Example
-    - run: yarn -i 
-    - run:  yarn build
-    
+    - run: cd CRA-Example && yarn -i && yarn build
     - uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
