@@ -2,12 +2,12 @@ This is mock server of k2 examples.
 
 ## Setup
 
-These are following steps to setup example:
+These are following steps to setup mock server:
 
 1. Clone the example repo.
-2. cd Mock-Server directory.
+2. Open Mock-Server directory.
 3. Install dependencies of Mock-Server.
-4. Run the mock server.
+4. Run the Mock-Server.
 
 ## How to run mock server
 
