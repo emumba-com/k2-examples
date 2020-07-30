@@ -1,5 +1,7 @@
 export const getURL = (route: string) =>
-  `https://demos.emumba.com:7000/api/v1/${route}`;
+  !process.env.NODE_ENV || process.env.NODE_ENV === "development"
+    ? `/api/v1/${route}`
+    : `https://mockapiserver.emumba.com/api/v1/${route}`;
 
 export const fullMonthNames = [
   "January",
