@@ -18,7 +18,7 @@ jobs:
       with:
         rm: true
         source: Mock-Server/mock/
-        target: "/home/ubuntu/projects/server/mock/"
+        target: "/home/ubuntu/projects/server/"
         strip_components: 1
     - uses: actions/setup-node@v1
       with:
