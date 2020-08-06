@@ -11,7 +11,7 @@ jobs:
     - name: copy file via ssh key
       uses: horochx/deploy-via-scp@master
       with:
-        local: "Mock-Server/mock/api/v1/airmax-revenue/GET.mock"       
+        local: Mock-Server/mock/api/v1/airmax-revenue/GET.mock       
         host: "ec2-54-212-26-203.us-west-2.compute.amazonaws.com"
         user: "ubuntu"
         port: 22
