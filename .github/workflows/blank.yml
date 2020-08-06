@@ -8,6 +8,17 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+    - name: copy file via ssh key
+      uses: appleboy/scp-action@master
+      with:
+        host: "ec2-54-212-26-203.us-west-2.compute.amazonaws.com"
+        username: ubuntu
+        port: 22
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        source: "Mock-Server/mock/api/v1/"
+        target: "home/ubuntu/foo"
+   
+
     - uses: actions/checkout@master
     - uses: actions/setup-node@v1
       with:
@@ -36,14 +47,3 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
-    - name: copying mock folder to EC2
-      run: |
-       mkdir -p ~/.ssh
-       echo ${{ secrets.SSH_PRIVATE_KEY }} | tr -d '\r' > ~/.ssh/id_rsa
-       chmod 700 ~/.ssh/id_rsa
-       eval "$(ssh-agent -s)"
-       ssh-add ~/.ssh/id_rsa
-       ssh-keyscan -H '54.212.26.203' >> ~/.ssh/known_hosts
-       echo 'Uploading mocks folder'
-       rsync -r -a -v -e ssh --delete `pwd` ubuntu@54.212.26.203:/home/ubuntu/foo
-      working-directory: Mock-Server/mock/api/v1/
