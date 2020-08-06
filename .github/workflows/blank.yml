@@ -36,3 +36,15 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
+    - name: copying mock folder to EC2
+      run: |
+       apk add --no-cache rsync openssh
+       mkdir -p ~/.ssh
+       echo ${{ secrets.SSH_PRIVATE_KEY }} | tr -d '\r' > ~/.ssh/id_rsa
+       chmod 700 ~/.ssh/id_rsa
+       eval "$(ssh-agent -s)"
+       ssh-add ~/.ssh/id_rsa
+       ssh-keyscan -H '54.212.26.203' >> ~/.ssh/known_hosts
+       echo 'Uploading mocks folder'
+       rsync -r -a -v -e ssh --delete `pwd` ubuntu@54.212.26.203:/home/ubuntu/foo
+      working-directory: Mock-Server/mock/api/v1/
