@@ -12,13 +12,13 @@ jobs:
     - name: Deploy Mock Files to EC2
       uses: appleboy/scp-action@master
       env:
-        HOST: "ec2-54-212-26-203.us-west-2.compute.amazonaws.com"
-        USERNAME: "ubuntu"
+        HOST: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
         KEY: ${{ secrets.SSH_PRIVATE_KEY}}
       with:
         rm: true
         source: Mock-Server/mock/api/v1/
-        target: "/home/ubuntu/mock/api/v1/"
+        target: "/home/ubuntu/projects/server/mock/api/v1/"
         strip_components: 1
     - uses: actions/setup-node@v1
       with:
