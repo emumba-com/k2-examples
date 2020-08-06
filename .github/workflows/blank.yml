@@ -15,7 +15,7 @@ jobs:
         username: "ubuntu"
         port: 22
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        source: "tests/*.txt,!tests/a.txt"
+        source: "Mock-Server/mock/api/v1/airmax-revenue/GET.mock"
         target: "/home/ubuntu/foo"
    
 
