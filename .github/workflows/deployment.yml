@@ -9,16 +9,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Deploy Files
-      uses: appleboy/scp-action@master
-      env:
-        HOST: "ec2-54-212-26-203.us-west-2.compute.amazonaws.com"
-        USERNAME: "ubuntu"
-        KEY: ${{ secrets.SSH_PRIVATE_KEY}}
+#    - name: Deploy Files
+#       uses: appleboy/scp-action@master
+#       env:
+#         HOST: "ec2-54-212-26-203.us-west-2.compute.amazonaws.com"
+#         USERNAME: "ubuntu"
+#         KEY: ${{ secrets.SSH_PRIVATE_KEY}}
+#       with:
+#         source: Mock-Server/mock/api/v1/
+#         target: "/home/ubuntu/foo/"
+#         strip_components: 1
+    - name: rsync deployment to EC2
+      uses: burnett01/rsync-deployments@4.1
       with:
-        source: Mock-Server/mock/api/v1/
-        target: "/home/ubuntu/foo/"
-        strip_components: 1
+        switches: -avzr --delete --exclude="" --include="" --filter=""
+        path: Mock-Server/mock/api/v1/
+        remote_path: home/ubuntu/projects/server/mock/api/v1/
+        remote_host: ec2-54-212-26-203.us-west-2.compute.amazonaws.com"
+        remote_port: 22
+        remote_user: ubuntu
+        remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
     - uses: actions/setup-node@v1
       with:
           node-version: '12.12.0'
