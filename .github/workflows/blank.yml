@@ -38,7 +38,6 @@ jobs:
         DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}
     - name: copying mock folder to EC2
       run: |
-       apk add --no-cache rsync openssh
        mkdir -p ~/.ssh
        echo ${{ secrets.SSH_PRIVATE_KEY }} | tr -d '\r' > ~/.ssh/id_rsa
        chmod 700 ~/.ssh/id_rsa
