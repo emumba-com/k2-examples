@@ -16,6 +16,7 @@ jobs:
         USERNAME: "ubuntu"
         KEY: ${{ secrets.SSH_PRIVATE_KEY}}
       with:
+        rm: true
         source: Mock-Server/mock/api/v1/
         target: "/home/ubuntu/mock/api/v1/"
         strip_components: 1
