@@ -12,7 +12,7 @@ jobs:
       uses: burnett01/rsync-deployments@4.1
       with:
         switches: -avzr --delete --exclude="" --include="" --filter=""
-        path: Mock-Server/mock/api/v1
+        path: src/
         remote_path: /home/ubuntu/foo/
         remote_host: ec2-54-212-26-203.us-west-2.compute.amazonaws.com
         remote_port: 22
