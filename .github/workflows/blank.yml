@@ -12,7 +12,7 @@ jobs:
       run: |
         pwd
         ls
-        scp -i -r ${{ secrets.SSH_PRIVATE_KEY }} ubuntu@ec2-54-212-26-203.us-west-2.compute.amazonaws.com:/home/ubuntu/foo/
+        scp -i -r ${{ secrets.SSH_PRIVATE_KEY }} mock/api/v1/ ubuntu@ec2-54-212-26-203.us-west-2.compute.amazonaws.com:/home/ubuntu/foo/
       working-directory: Mock-Server
 
     - uses: actions/checkout@master
