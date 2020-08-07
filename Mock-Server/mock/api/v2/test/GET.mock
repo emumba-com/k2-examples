@@ -1,0 +1,31 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+
+
+
+[{
+	"name": "series 1",
+	"data": [
+  {
+		"x": 12.5,
+		"y": "Mag",
+		"labelColor": "#777777"
+	},
+  {
+		"x": 3.5,
+		"y": "Air Max",
+		"labelColor": "#777777"
+	},
+  {
+		"x": 78.55,
+		"y": "Blazers",
+		"labelColor": "#777777"
+	}, 
+    {
+		"x": 10.55,
+		"y": "Jordan",
+		"labelColor": "#777777"
+	}
+  ]
+}]
