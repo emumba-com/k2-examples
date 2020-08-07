@@ -16,9 +16,8 @@ jobs:
         USERNAME: ${{ secrets.USERNAME }}
         KEY: ${{ secrets.SSH_PRIVATE_KEY}}
       with:
-        rm: true
-        source: Mock-Server/mock/api/v1/
-        target: "/home/ubuntu/projects/server/mock/api/v1/"
+        source: Mock-Server/mock/
+        target: "/home/ubuntu/projects/server/"
         strip_components: 1
     - uses: actions/setup-node@v1
       with:
