@@ -1,57 +1,29 @@
 import React from "react";
-import { Icon, Menu, Dropdown } from "antd";
+import { Icon } from "antd";
 
 import { HeaderStyled } from "./header.style";
-const menu = (
-  <Menu>
-    <Menu.Item key="0">Logout</Menu.Item>
-  </Menu>
-);
+import { ToggleButton } from "../ThemeToggleButton/ThemeToggleButton";
+
 export default function Header() {
   return (
     <HeaderStyled>
       <div className="header-content-wrapper">
-        <div className="header-branding">
-          <div className="logo-container">
+        <div className="heading">
+          <span>
+            This Dashboard is created using K2. View the source code on{" "}
+            <Icon className="action-icon" type="github" theme="filled" />{" "}
             <a
               target="_blank"
-              href="http://k2.emumba.com"
               rel="noopener noreferrer"
+              href="https://github.com/emumba-com/k2-examples/tree/master/CRA-Example"
             >
-              <img className="img" src="/icon.svg" alt="K2" />
+              GitHub
             </a>
-            <span className="logo">K2 Dashboard</span>
-          </div>
+          </span>
         </div>
-        <div style={{ color: "white" }} className="header-actions">
-          <div className="icons-wrapper">
-            <Icon
-              className="action-icon"
-              type="github"
-              theme="filled"
-              onClick={() =>
-                window.open(
-                  "https://github.com/emumba-com/k2-examples/tree/master/CRA-Example",
-                  "_blank",
-                )
-              }
-            />
-            <Icon className="action-icon" type="search" />
-            <Icon className="action-icon" type="bell" theme="filled" />
-            <Icon className="action-icon" type="setting" theme="filled" />
-          </div>
-          <div className="action-menu-wrapper">
-            <div className="header-avatar">E</div>
-            <div className="header-menu">
-              <Dropdown overlay={menu} trigger={["click"]}>
-                <div className="header-menu">
-                  Emumba <Icon type="caret-down" />
-                </div>
-              </Dropdown>
-            </div>
-          </div>
+        <div className="toggle">
+          <ToggleButton />
         </div>
-        {/* <ToggleButton /> */}
       </div>
     </HeaderStyled>
   );
