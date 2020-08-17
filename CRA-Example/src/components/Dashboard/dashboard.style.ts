@@ -4,7 +4,7 @@ export const DashboardStyled = styled.main`
   min-width: 1366px;
   max-width: 1600px;
   margin: 0 auto;
-  margin-top: 112px;
+  margin-top: 50px;
   padding-top: 6px;
   .rv-xy-plot__axis__tick__text {
     font-size: 12px;

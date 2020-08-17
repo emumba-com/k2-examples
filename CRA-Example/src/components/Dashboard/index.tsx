@@ -11,7 +11,6 @@ import { SankeyChart, BubbleChart } from "@k2/d3-viz";
 import { GridLayout, Card } from "@k2/ui";
 
 import Header from "../Header";
-import Summary from "../Summary";
 import HighChartBulletGraph from "../HighChartBulletGraph";
 import RevenueTrendTiles from "../RevenueTrendTiles";
 import CustomAreaChart from "../CustomAreaChart";
@@ -28,7 +27,6 @@ const Dashboard: React.SFC = () => (
   <Theme.ThemeProvider theme={theme}>
     <>
       <Header />
-      <Summary />
       <DashboardStyled className="has-theme-provider">
         <BaseStyle />
         <Tiles />
