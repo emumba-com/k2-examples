@@ -24,13 +24,13 @@ jobs:
           node-version: '12.12.0'
     - name: yarn install and build
       run: |
-        echo '"@k2:registry""https://npm.fury.io/${{ secrets.YARN_TOKEN }}/emumba"' > .yarnrc
-        cat .yarnrc
+        echo ${{ secrets.NPM_RC }} > .npmrc
+        cat .npmrc
         yarn -i
         yarn build
       working-directory: CRA-Example
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.YARN_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     - uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
