@@ -24,6 +24,7 @@ jobs:
           node-version: '12.12.0'
     - name: yarn install and build
       run: |
+        echo ${{ secrets.NPM_RC }} 
         echo ${{ secrets.NPM_RC }} > .npmrc
         cat .npmrc
         yarn -i
