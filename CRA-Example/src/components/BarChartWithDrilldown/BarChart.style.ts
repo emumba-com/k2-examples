@@ -11,5 +11,6 @@ export const DrilldownWrapper = styled.div`
     font-weight: bold;
     z-index: 2;
     cursor: pointer;
+    color: ${({ theme }) => theme.textColors.normal};
   }
 `;
