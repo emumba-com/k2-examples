@@ -22,6 +22,7 @@ import { kFormatter, getMonthYearFromDate } from "../../utils";
 import { getURL, monthTickValues, shortMonthNames } from "../../constants";
 import { DashboardStyled, CardDividerDivStyled } from "./dashboard.style";
 import { theme } from "../../theme";
+import BarChartWithDrilldown from "../BarChartWithDrilldown";
 
 const Dashboard: React.SFC = () => (
   <Theme.ThemeProvider theme={theme}>
@@ -51,38 +52,7 @@ const Dashboard: React.SFC = () => (
             />
           </Card>
           <Card>
-            <BarChart
-              url={getURL("best-sellers")}
-              title="Top 4 Best Sellers"
-              barWidth={0.5}
-              legends={false}
-              verticalGridLines={false}
-              horizontalGridLines={false}
-              xyPlot={{
-                xDomain: [0, 100],
-                margin: { left: 70, right: 30, top: 30, bottom: 30 },
-              }}
-              xAxis={{
-                tickSizeOuter: 6,
-                tickSizeInner: 0,
-                tickTotal: 100,
-                tickValues: [0, 20, 40, 60, 80, 100],
-                style: {
-                  strokeWidth: 0.5,
-                },
-                tickFormat: (value: any) => `${value}%`,
-              }}
-              yAxis={{
-                tickSize: 0,
-                hideLine: true,
-                style: { strokeWidth: 0.6, fontSize: "13px" },
-              }}
-              colors={{
-                dark: ["#5579ae", "#5579ae", "#5579ae", "#5579ae", "#5579ae"],
-                light: ["#5579ae", "#5579ae", "#5579ae", "#5579ae", "#5579ae"],
-              }}
-              label={({ data }) => <div>{data.x}%</div>}
-            />
+            <BarChartWithDrilldown />
           </Card>
           <Card>
             <BubbleChart
