@@ -76,7 +76,11 @@ export default fetchPageData({
   paged: false,
   defaultComponentStates: {
     blank: <div>loading</div>,
-    loading: <LoadingAnimation>{<div>loading</div>}</LoadingAnimation>,
+    loading: (
+      <LoadingAnimation>
+        {<div style={{ minHeight: "80px" }}>loading</div>}
+      </LoadingAnimation>
+    ),
   },
   // @ts-ignore
 })(Tile);
