@@ -8,8 +8,7 @@ import { TileStyled } from "./tile.style";
 interface TileProps {
   tileTitle: string;
   backgroundColor?: string;
-  valueBackground?: string;
-  titleBackground?: string;
+  background?: string;
   boxShadow?: boolean;
   valueColor?: string;
   titleColor?: string;
@@ -30,8 +29,7 @@ const Tile = (props: TileProps) => {
     valueColor = "white",
     titleColor = "white",
     statusColor = "white",
-    titleBackground,
-    valueBackground,
+    background,
     data: { value, percentage, status },
   } = props;
   const icon =
@@ -48,8 +46,7 @@ const Tile = (props: TileProps) => {
       valueColor={valueColor}
       titleColor={titleColor}
       statusColor={statusColor}
-      valueBackground={valueBackground}
-      titleBackground={titleBackground}
+      background={background}
     >
       <div className="value-wrapper">
         <h2 className="value">{value}</h2>
