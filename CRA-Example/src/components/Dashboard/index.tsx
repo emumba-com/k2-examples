@@ -8,7 +8,8 @@ import {
   BarChart,
 } from "@k2/rv-viz";
 import { SankeyChart, BubbleChart } from "@k2/d3-viz";
-import { GridLayout, Card } from "@k2/ui";
+import { Card } from "@k2/ui";
+import { Responsive, WidthProvider } from "react-grid-layout";
 
 import Header from "../Header";
 import HighChartBulletGraph from "../HighChartBulletGraph";
@@ -24,6 +25,41 @@ import { DashboardStyled, CardDividerDivStyled } from "./dashboard.style";
 import { theme } from "../../theme";
 import BarChartWithDrilldown from "../BarChartWithDrilldown";
 
+const ResponsiveGridLayout = WidthProvider(Responsive);
+
+const layouts = {
+  lg: [
+    { i: "1", x: 0, y: 0, w: 2, h: 1 },
+    { i: "2", x: 2, y: 0, w: 1, h: 1 },
+    { i: "3", x: 0, y: 1, w: 1, h: 1 },
+    { i: "4", x: 1, y: 1, w: 1, h: 1 },
+    { i: "5", x: 2, y: 1, w: 1, h: 1 },
+    { i: "6", x: 0, y: 2, w: 1, h: 1 },
+    { i: "7", x: 1, y: 2, w: 2, h: 2 },
+    { i: "8", x: 0, y: 3, w: 1, h: 1 },
+    { i: "9", x: 0, y: 4, w: 2, h: 2 },
+    { i: "10", x: 2, y: 4, w: 1, h: 1 },
+    { i: "11", x: 2, y: 5, w: 1, h: 1 },
+    { i: "12", x: 0, y: 6, w: 1, h: 1 },
+    { i: "13", x: 1, y: 6, w: 2, h: 1 },
+  ],
+  md: [
+    { i: "1", x: 0, y: 0, w: 2, h: 1 },
+    { i: "2", x: 0, y: 1, w: 1, h: 1 },
+    { i: "3", x: 1, y: 1, w: 1, h: 1 },
+    { i: "4", x: 0, y: 2, w: 1, h: 1 },
+    { i: "5", x: 1, y: 2, w: 1, h: 1 },
+    { i: "6", x: 0, y: 3, w: 1, h: 1 },
+    { i: "7", x: 0, y: 4, w: 2, h: 2 },
+    { i: "8", x: 1, y: 3, w: 1, h: 1 },
+    { i: "9", x: 0, y: 6, w: 2, h: 2 },
+    { i: "10", x: 0, y: 7, w: 1, h: 1 },
+    { i: "11", x: 1, y: 7, w: 1, h: 1 },
+    { i: "13", x: 0, y: 8, w: 2, h: 1 },
+    { i: "12", x: 0, y: 9, w: 1, h: 1 },
+  ],
+};
+
 const Dashboard: React.SFC = () => (
   <Theme.ThemeProvider theme={theme}>
     <>
@@ -31,9 +67,16 @@ const Dashboard: React.SFC = () => (
       <DashboardStyled className="has-theme-provider">
         <BaseStyle />
         <Tiles />
-        <GridLayout isDraggable={false}>
-          <CustomAreaChart />
-          <Card>
+        <ResponsiveGridLayout
+          isDraggable={false}
+          layouts={layouts}
+          rowHeight={300}
+          cols={{ lg: 3, md: 2, sm: 1 }}
+          breakpoints={{ lg: 1200, md: 996, sm: 768 }}
+          style={{ position: "relative" }}
+        >
+          <CustomAreaChart key="1" />
+          <Card key="2">
             <PieChart
               url={getURL("top-regions")}
               title="Top Revenue By Region"
@@ -51,10 +94,10 @@ const Dashboard: React.SFC = () => (
               radial={{ innerRadius: 0.75, anglePadding: 0.9 }}
             />
           </Card>
-          <Card>
+          <Card key="3">
             <BarChartWithDrilldown />
           </Card>
-          <Card>
+          <Card key="4">
             <BubbleChart
               title="Top Revenue By Region"
               url={getURL("top-revenue")}
@@ -73,7 +116,7 @@ const Dashboard: React.SFC = () => (
               )}
             />
           </Card>
-          <Card>
+          <Card key="5">
             <ColumnChart
               url={getURL("brand-engagement-single")}
               title="Brand Engagement Overview"
@@ -101,7 +144,7 @@ const Dashboard: React.SFC = () => (
               label={({ data }) => <div>{data.y}%</div>}
             />
           </Card>
-          <Card>
+          <Card key="6">
             <BarChart
               url={getURL("brand-following")}
               title="Brand Following"
@@ -139,7 +182,7 @@ const Dashboard: React.SFC = () => (
               }}
             />
           </Card>
-          <Card>
+          <Card key="7">
             <CardDividerDivStyled>
               <div className="section-1">
                 <LineChart
@@ -194,10 +237,10 @@ const Dashboard: React.SFC = () => (
             </CardDividerDivStyled>
           </Card>
 
-          <Card>
+          <Card key="8">
             <HighChartBulletGraph />
           </Card>
-          <Card>
+          <Card key="9">
             <SankeyChart
               title="Product Sales By Region"
               url={getURL("product-sales")}
@@ -210,7 +253,7 @@ const Dashboard: React.SFC = () => (
               }}
             />
           </Card>
-          <Card>
+          <Card key="10">
             <PieChart
               url={getURL("best-sellers-revenue")}
               title="Best Sellers By Revenue"
@@ -229,7 +272,7 @@ const Dashboard: React.SFC = () => (
             />
           </Card>
 
-          <Card>
+          <Card key="11">
             <BarChart
               url={getURL("brand-engagement")}
               title="Brand Engagement"
@@ -261,7 +304,7 @@ const Dashboard: React.SFC = () => (
               }}
             />
           </Card>
-          <Card>
+          <Card key="12">
             <ColumnChart
               url={getURL("brand-engagement-grouped")}
               title="Brand Engagement"
@@ -302,7 +345,7 @@ const Dashboard: React.SFC = () => (
               }}
             />
           </Card>
-          <Card>
+          <Card key="13">
             <AreaChart
               url={getURL("sales-overview")}
               title="Sales Overview"
@@ -378,7 +421,7 @@ const Dashboard: React.SFC = () => (
               }}
             />
           </Card>
-        </GridLayout>
+        </ResponsiveGridLayout>
       </DashboardStyled>
     </>
   </Theme.ThemeProvider>

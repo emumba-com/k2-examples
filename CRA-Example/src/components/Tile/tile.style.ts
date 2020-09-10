@@ -6,6 +6,9 @@ export const TilesWrapper = styled.div<{ columns?: number }>`
   display: grid;
   grid-template-columns: repeat(${props => props.columns || 5}, 1fr);
   grid-gap: 10px;
+  @media (max-width: 960px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 export const TileStyled = styled("div")<{

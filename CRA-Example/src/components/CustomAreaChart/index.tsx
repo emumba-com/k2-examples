@@ -28,8 +28,12 @@ const applyFilter = (data, selectedRegions, selectedQuarter) => {
       }, [])
     : filteredData;
 };
-
-const CustomAreaChart = () => {
+type Props = {
+  width?: string | number;
+  height?: string | number;
+  key?: string;
+};
+const CustomAreaChart = (props: Props) => {
   const [open, OpenDrawer] = React.useState(false);
   const [selectedRegion, setRegion] = React.useState([]);
   const [selectedQuarter, setQuarter] = React.useState(undefined);
@@ -58,6 +62,7 @@ const CustomAreaChart = () => {
 
   return (
     <CardStyled
+      {...props}
       classes={{
         title: "card-title",
         actions: "card-actions",
