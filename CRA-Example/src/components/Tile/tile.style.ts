@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import dotBackground from "../../dots.png";
 
 export const TilesWrapper = styled.div<{ columns?: number }>`
   padding: 15px 15px 0 15px;
@@ -9,8 +10,7 @@ export const TilesWrapper = styled.div<{ columns?: number }>`
 
 export const TileStyled = styled("div")<{
   backgroundColor: string;
-  valueBackground?: string;
-  titleBackground?: string;
+  background?: string;
   valueColor: string;
   titleColor: string;
   boxShadow: boolean;
@@ -23,13 +23,14 @@ export const TileStyled = styled("div")<{
   border-radius: 4px;
   display: flex;
   flex-direction: column;
+  background: ${props => props.background || props.backgroundColor};
 
   .value-wrapper {
     display: flex;
     align-items: center;
     padding: 7px 10px 3px 10px;
-    background: ${props => props.valueBackground || props.backgroundColor};
     border-radius: 4px 4px 0 0;
+    background: url('${dotBackground}');
   }
 
   .status {
@@ -63,7 +64,6 @@ export const TileStyled = styled("div")<{
     color: ${props => props.titleColor};
     font-size: 13px;
     padding: 5px 10px 5px 10px;
-    background: ${props => props.titleBackground || props.backgroundColor};
     border-radius: 0 0 5px 5px;
   }
 `;
