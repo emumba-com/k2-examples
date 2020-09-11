@@ -1,5 +1,4 @@
 import React from "react";
-import { Theme } from "@k2/utils";
 import {
   ColumnChart,
   LineChart,
@@ -22,8 +21,8 @@ import { BaseStyle } from "../../App.style";
 import { kFormatter, getMonthYearFromDate } from "../../utils";
 import { getURL, monthTickValues, shortMonthNames } from "../../constants";
 import { DashboardStyled, CardDividerDivStyled } from "./dashboard.style";
-import { theme } from "../../theme";
 import BarChartWithDrilldown from "../BarChartWithDrilldown";
+import { withTheme } from "styled-components";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -60,8 +59,12 @@ const layouts = {
   ],
 };
 
-const Dashboard: React.SFC = () => (
-  <Theme.ThemeProvider theme={theme}>
+const Dashboard: React.SFC<any> = ({ theme }) => {
+  const { mode } = theme;
+  const tooltipProps: any = {
+    type: mode === "light" ? "light-default" : "dark",
+  };
+  return (
     <>
       <Header />
       <DashboardStyled className="has-theme-provider">
@@ -94,12 +97,13 @@ const Dashboard: React.SFC = () => (
                   </label>
                 )}
                 radial={{ innerRadius: 0.75, anglePadding: 0.9 }}
+                tooltip={tooltipProps}
               />
             </Card>
           </div>
           <div key="3">
             <Card>
-              <BarChartWithDrilldown />
+              <BarChartWithDrilldown tooltipProps={tooltipProps} />
             </Card>
           </div>
           <div key="4">
@@ -120,6 +124,7 @@ const Dashboard: React.SFC = () => (
                     {radius > 30 && <div>{data.name}</div>}
                   </label>
                 )}
+                tooltip={tooltipProps}
               />
             </Card>
           </div>
@@ -156,6 +161,7 @@ const Dashboard: React.SFC = () => (
                   ],
                 }}
                 label={({ data }) => <div>{data.y}%</div>}
+                tooltip={tooltipProps}
               />
             </Card>
           </div>
@@ -198,6 +204,7 @@ const Dashboard: React.SFC = () => (
                   ],
                 }}
                 tooltip={{
+                  ...tooltipProps,
                   formatter: ({ data }) => {
                     return (
                       <div>{`${data.y}: ${data.x - (data.x0 || 0)}M`}</div>
@@ -280,6 +287,7 @@ const Dashboard: React.SFC = () => (
                 linkProps={{
                   mode: "default",
                 }}
+                tooltip={tooltipProps}
               />
             </Card>
           </div>
@@ -300,6 +308,7 @@ const Dashboard: React.SFC = () => (
                     {label}:<strong>{` ${value}%`}</strong>
                   </label>
                 )}
+                tooltip={tooltipProps}
               />
             </Card>
           </div>
@@ -334,6 +343,7 @@ const Dashboard: React.SFC = () => (
                   dark: ["#b177bb", "#30b1d9", "#e89e5d"],
                   light: ["#b177bb", "#30b1d9", "#e89e5d"],
                 }}
+                tooltip={tooltipProps}
               />
             </Card>
           </div>
@@ -377,6 +387,7 @@ const Dashboard: React.SFC = () => (
                   dark: ["#5579ae", "#30b1d9"],
                   light: ["#5579ae", "#30b1d9"],
                 }}
+                tooltip={tooltipProps}
               />
             </Card>
           </div>
@@ -461,7 +472,7 @@ const Dashboard: React.SFC = () => (
         </ResponsiveGridLayout>
       </DashboardStyled>
     </>
-  </Theme.ThemeProvider>
-);
+  );
+};
 
-export default Dashboard;
+export default withTheme<any>(Dashboard);
