@@ -23,6 +23,10 @@ export const DashboardStyled = styled.main`
   .highcharts-root {
     width: 100% !important;
   }
+  .tooltip.type-dark.show {
+    > div > div {
+      background: none !important;
+    }
   }
 `;
 

@@ -5,8 +5,9 @@ import { BubbleChart } from "@k2/d3-viz";
 import { DrilldownWrapper } from "./BarChart.style";
 type Props = {
   onClick: (event: any) => void;
+  tooltipProps: any;
 };
-const Chart = ({ onClick }: Props) => {
+const Chart = ({ onClick, tooltipProps }: Props) => {
   return (
     <BarChart
       url={getURL("best-sellers")}
@@ -40,14 +41,16 @@ const Chart = ({ onClick }: Props) => {
       }}
       label={({ data }) => <div>{data.x}%</div>}
       onClick={onClick}
+      tooltip={tooltipProps}
     />
   );
 };
 type DrilldownProps = {
   data: { y: string };
   onBackClick: () => void;
+  tooltipProps: any;
 };
-const Drilldown = ({ data, onBackClick }: DrilldownProps) => {
+const Drilldown = ({ data, onBackClick, tooltipProps }: DrilldownProps) => {
   return (
     <DrilldownWrapper>
       <div className="back-button" onClick={onBackClick}>
@@ -69,16 +72,24 @@ const Drilldown = ({ data, onBackClick }: DrilldownProps) => {
             {radius > 30 && <div>{data.name}</div>}
           </label>
         )}
+        tooltip={tooltipProps}
       />
     </DrilldownWrapper>
   );
 };
-const ChartWithDrilldown = () => {
+const ChartWithDrilldown = ({ tooltipProps }: any) => {
   const [drilldown, setDrilldown] = useState<any>(false);
   return drilldown ? (
-    <Drilldown data={drilldown} onBackClick={() => setDrilldown(false)} />
+    <Drilldown
+      data={drilldown}
+      onBackClick={() => setDrilldown(false)}
+      tooltipProps={tooltipProps}
+    />
   ) : (
-    <Chart onClick={({ data }) => setDrilldown(data)} />
+    <Chart
+      onClick={({ data }) => setDrilldown(data)}
+      tooltipProps={tooltipProps}
+    />
   );
 };
 export default ChartWithDrilldown;
