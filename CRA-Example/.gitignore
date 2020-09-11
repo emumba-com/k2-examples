@@ -20,6 +20,7 @@
 .env.production.local
 .env
 .yarnrc
+.npmrc
 
 yarn.lock
 npm-debug.log*
