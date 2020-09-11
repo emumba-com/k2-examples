@@ -68,7 +68,6 @@ const Dashboard: React.SFC = () => (
         <BaseStyle />
         <Tiles />
         <ResponsiveGridLayout
-          isDraggable={false}
           layouts={layouts}
           rowHeight={300}
           cols={{ lg: 3, md: 2, sm: 1 }}
