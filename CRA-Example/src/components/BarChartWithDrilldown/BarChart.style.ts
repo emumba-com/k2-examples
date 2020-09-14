@@ -6,11 +6,6 @@ export const DrilldownWrapper = styled.div`
   .back-button {
     position: absolute;
     left: 0;
-    top: 40px;
-    padding: 8px 16px;
-    font-weight: bold;
-    z-index: 2;
-    cursor: pointer;
-    color: ${({ theme }) => theme.textColors.normal};
+    top: 20px;
   }
 `;

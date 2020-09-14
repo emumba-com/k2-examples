@@ -6,7 +6,7 @@ import {
   AreaChart,
   BarChart,
 } from "@k2/rv-viz";
-import { SankeyChart, BubbleChart } from "@k2/d3-viz";
+import { SankeyChart } from "@k2/d3-viz";
 import { Card } from "@k2/ui";
 import { Responsive, WidthProvider } from "react-grid-layout";
 
@@ -23,10 +23,26 @@ import { getURL, monthTickValues, shortMonthNames } from "../../constants";
 import { DashboardStyled, CardDividerDivStyled } from "./dashboard.style";
 import BarChartWithDrilldown from "../BarChartWithDrilldown";
 import { withTheme } from "styled-components";
+import BubbleChartWithDrilldown from "../BubbleChartWithDrilldown/BubbleChart";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const layouts = {
+  xl: [
+    { i: "1", x: 0, y: 0, w: 2, h: 1 },
+    { i: "2", x: 2, y: 0, w: 1, h: 1 },
+    { i: "3", x: 3, y: 0, w: 1, h: 1 },
+    { i: "4", x: 4, y: 0, w: 1, h: 1 },
+    { i: "5", x: 0, y: 1, w: 1, h: 1 },
+    { i: "6", x: 1, y: 1, w: 1, h: 1 },
+    { i: "7", x: 2, y: 1, w: 2, h: 2 },
+    { i: "8", x: 4, y: 1, w: 1, h: 1 },
+    { i: "9", x: 0, y: 2, w: 2, h: 2 },
+    { i: "10", x: 2, y: 2, w: 1, h: 1 },
+    { i: "11", x: 3, y: 2, w: 1, h: 1 },
+    { i: "12", x: 4, y: 2, w: 1, h: 1 },
+    { i: "13", x: 5, y: 2, w: 1, h: 1 },
+  ],
   lg: [
     { i: "1", x: 0, y: 0, w: 2, h: 1 },
     { i: "2", x: 2, y: 0, w: 1, h: 1 },
@@ -73,8 +89,8 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
         <ResponsiveGridLayout
           layouts={layouts}
           rowHeight={300}
-          cols={{ lg: 3, md: 2, sm: 1 }}
-          breakpoints={{ lg: 1200, md: 996, sm: 768 }}
+          cols={{ xl: 5, lg: 3, md: 2, sm: 1 }}
+          breakpoints={{ xl: 1900, lg: 1200, md: 996, sm: 768 }}
           style={{ position: "relative" }}
         >
           <div key="1">
@@ -108,24 +124,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
           </div>
           <div key="4">
             <Card>
-              <BubbleChart
-                title="Top Revenue By Region"
-                url={getURL("top-revenue")}
-                legends={false}
-                label={({ data, radius }) => (
-                  <label
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}
-                  >
-                    <strong>{Math.round(data.value * 10) / 10}%</strong>
-                    {radius > 30 && <div>{data.name}</div>}
-                  </label>
-                )}
-                tooltip={tooltipProps}
-              />
+              <BubbleChartWithDrilldown tooltipProps={tooltipProps} />
             </Card>
           </div>
           <div key="5">
