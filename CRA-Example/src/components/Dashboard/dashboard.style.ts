@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const DashboardStyled = styled.main`
-  max-width: 1600px;
   margin: 0 auto;
   margin-top: 50px;
   padding-top: 6px;
