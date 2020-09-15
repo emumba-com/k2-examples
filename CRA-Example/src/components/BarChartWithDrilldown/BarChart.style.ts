@@ -8,4 +8,14 @@ export const DrilldownWrapper = styled.div`
     left: 0;
     top: 20px;
   }
+  .k2--horizontal-bar-series {
+    rect {
+      cursor: pointer;
+    }
+  }
+  .k2--d3-chart-inner-wrapper {
+    circle {
+      cursor: pointer;
+    }
+  }
 `;

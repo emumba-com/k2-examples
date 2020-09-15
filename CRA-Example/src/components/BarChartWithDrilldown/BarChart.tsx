@@ -11,40 +11,42 @@ type ChartProps = {
 };
 const Chart = ({ onClick, tooltipProps }: ChartProps) => {
   return (
-    <BarChart
-      url={getURL("best-sellers")}
-      title="Top 4 Best Sellers"
-      barWidth={0.5}
-      legends={false}
-      verticalGridLines={false}
-      horizontalGridLines={false}
-      xyPlot={{
-        xDomain: [0, 100],
-        margin: { left: 70, right: 30, top: 30, bottom: 30 },
-      }}
-      xAxis={{
-        tickSizeOuter: 6,
-        tickSizeInner: 0,
-        tickTotal: 100,
-        tickValues: [0, 20, 40, 60, 80, 100],
-        style: {
-          strokeWidth: 0.5,
-        },
-        tickFormat: (value: any) => `${value}%`,
-      }}
-      yAxis={{
-        tickSize: 0,
-        hideLine: true,
-        style: { strokeWidth: 0.6, fontSize: "13px" },
-      }}
-      colors={{
-        dark: ["#5579ae", "#5579ae", "#5579ae", "#5579ae", "#5579ae"],
-        light: ["#5579ae", "#5579ae", "#5579ae", "#5579ae", "#5579ae"],
-      }}
-      label={({ data }) => <div>{data.x}%</div>}
-      onClick={onClick}
-      tooltip={tooltipProps}
-    />
+    <DrilldownWrapper>
+      <BarChart
+        url={getURL("best-sellers")}
+        title="Top 4 Best Sellers"
+        barWidth={0.5}
+        legends={false}
+        verticalGridLines={false}
+        horizontalGridLines={false}
+        xyPlot={{
+          xDomain: [0, 100],
+          margin: { left: 70, right: 30, top: 30, bottom: 30 },
+        }}
+        xAxis={{
+          tickSizeOuter: 6,
+          tickSizeInner: 0,
+          tickTotal: 100,
+          tickValues: [0, 20, 40, 60, 80, 100],
+          style: {
+            strokeWidth: 0.5,
+          },
+          tickFormat: (value: any) => `${value}%`,
+        }}
+        yAxis={{
+          tickSize: 0,
+          hideLine: true,
+          style: { strokeWidth: 0.6, fontSize: "13px" },
+        }}
+        colors={{
+          dark: ["#5579ae", "#5579ae", "#5579ae", "#5579ae", "#5579ae"],
+          light: ["#5579ae", "#5579ae", "#5579ae", "#5579ae", "#5579ae"],
+        }}
+        label={({ data }) => <div>{data.x}%</div>}
+        onClick={onClick}
+        tooltip={tooltipProps}
+      />
+    </DrilldownWrapper>
   );
 };
 type DrilldownProps = {
@@ -67,6 +69,10 @@ const Drilldown = ({ onBackClick, tooltipProps, onClick }: DrilldownProps) => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              cursor: "pointer",
+              justifyContent: "center",
+              width: "100%",
+              height: "100%",
             }}
             onClick={() => {
               onClick({ data });
