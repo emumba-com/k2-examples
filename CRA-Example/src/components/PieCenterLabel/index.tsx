@@ -14,3 +14,15 @@ export const PieCenterLabel = () => {
     </>
   );
 };
+
+export const PopulationPieCenterLabel = () => {
+  const {
+    textColors: { heading: color },
+  } = useContext(ThemeContext);
+  return (
+    <>
+      <CenterLabelStyled>7.3B</CenterLabelStyled>
+      <label style={{ color }}>Total Population</label>
+    </>
+  );
+};

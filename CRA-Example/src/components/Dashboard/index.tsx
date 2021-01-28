@@ -16,7 +16,7 @@ import RevenueTrendTiles from "../RevenueTrendTiles";
 import CustomAreaChart from "../CustomAreaChart";
 import Tiles from "../Tiles";
 import StaticLegends from "../StaticLegend";
-import { PieCenterLabel } from "../PieCenterLabel";
+import { PieCenterLabel, PopulationPieCenterLabel } from "../PieCenterLabel";
 import { BaseStyle } from "../../App.style";
 import { kFormatter, getMonthYearFromDate } from "../../utils";
 import { getURL, monthTickValues, shortMonthNames } from "../../constants";
@@ -293,14 +293,57 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
           <div key="10">
             <Card>
               <PieChart
-                url={getURL("best-sellers-revenue")}
-                title="Best Sellers By Revenue"
+                url="https://countries-274616.ew.r.appspot.com/"
+                title="Region's Population (via GraphQL)"
+                graphQLOptions={{
+                  query: `
+                    query {
+                      Europe: Country(filter: {subregion_in: [{ name_contains: "Europe"}]}) {
+                        ... CountryPopulation
+                      }
+                      Americas: Country(filter: {subregion_in: [{ name_contains: "America"}]}) {
+                        ... CountryPopulation
+                      }
+                      Africa: Country(filter: {subregion_in: [{ name_contains: "Africa"}]}) {
+                        ... CountryPopulation
+                      }
+                      Others: Country(filter: {subregion_not_in: [{ region_in: [{ name: "Europe"}, { name: "Americas"}, { name: "Africa"}]}]}) {
+                        ... CountryPopulation
+                      } 
+                    }
+                    
+                    fragment CountryPopulation on Country {
+                      name
+                      population
+                    }
+                  `,
+                }}
+                mapData={({ data }) => {
+                  const parsedData: any = Object.keys(data).map(region => {
+                    const population = data[region].reduce(
+                      (a, b) => a + b.population,
+                      0,
+                    );
+                    return { label: region, population };
+                  });
+                  const totalPopulation = parsedData.reduce(
+                    (a, b) => a + b.population,
+                    0,
+                  );
+                  parsedData.forEach(region => {
+                    region.value = (
+                      (region.population / totalPopulation) *
+                      100
+                    ).toFixed(1);
+                  });
+                  return parsedData;
+                }}
                 colors={{
                   dark: ["#5579ae", "#7793be", "#99aece", "#dde4ef"],
                   light: ["#5579ae", "#7793be", "#99aece", "#dde4ef"],
                 }}
                 radial={{ innerRadius: 0.75, anglePadding: 0.9 }}
-                centerLabel={PieCenterLabel}
+                centerLabel={PopulationPieCenterLabel}
                 legends={false}
                 label={({ data: { label, value } }) => (
                   <label style={{ fontSize: "13px", color: "#777777" }}>
