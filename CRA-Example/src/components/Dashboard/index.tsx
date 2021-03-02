@@ -8,7 +8,6 @@ import {
 } from "@k2/rv-viz";
 import { SankeyChart } from "@k2/d3-viz";
 import { Card, GridLayout } from "@k2/ui";
-import { Responsive, WidthProvider } from "react-grid-layout";
 
 import Header from "../Header";
 import HighChartBulletGraph from "../HighChartBulletGraph";
@@ -25,56 +24,6 @@ import BarChartWithDrilldown from "../BarChartWithDrilldown";
 import { withTheme } from "styled-components";
 import BubbleChartWithDrilldown from "../BubbleChartWithDrilldown/BubbleChart";
 
-const ResponsiveGridLayout = WidthProvider(Responsive);
-
-const layouts = {
-  xl: [
-    { i: "1", x: 0, y: 0, w: 2, h: 1 },
-    { i: "2", x: 2, y: 0, w: 1, h: 1 },
-    { i: "3", x: 3, y: 0, w: 1, h: 1 },
-    { i: "4", x: 4, y: 0, w: 1, h: 1 },
-    { i: "5", x: 0, y: 1, w: 1, h: 1 },
-    { i: "6", x: 1, y: 1, w: 1, h: 1 },
-    { i: "7", x: 2, y: 1, w: 2, h: 2 },
-    { i: "8", x: 4, y: 1, w: 1, h: 1 },
-    { i: "9", x: 0, y: 2, w: 2, h: 2 },
-    { i: "10", x: 2, y: 2, w: 1, h: 1 },
-    { i: "11", x: 3, y: 2, w: 1, h: 1 },
-    { i: "12", x: 4, y: 2, w: 1, h: 1 },
-    { i: "13", x: 5, y: 2, w: 1, h: 1 },
-  ],
-  lg: [
-    { i: "1", x: 0, y: 0, w: 2, h: 1 },
-    { i: "2", x: 2, y: 0, w: 1, h: 1 },
-    { i: "3", x: 0, y: 1, w: 1, h: 1 },
-    { i: "4", x: 1, y: 1, w: 1, h: 1 },
-    { i: "5", x: 2, y: 1, w: 1, h: 1 },
-    { i: "6", x: 0, y: 2, w: 1, h: 1 },
-    { i: "7", x: 1, y: 2, w: 2, h: 2 },
-    { i: "8", x: 0, y: 3, w: 1, h: 1 },
-    { i: "9", x: 0, y: 4, w: 2, h: 2 },
-    { i: "10", x: 2, y: 4, w: 1, h: 1 },
-    { i: "11", x: 2, y: 5, w: 1, h: 1 },
-    { i: "12", x: 0, y: 6, w: 1, h: 1 },
-    { i: "13", x: 1, y: 6, w: 2, h: 1 },
-  ],
-  md: [
-    { i: "1", x: 0, y: 0, w: 2, h: 1 },
-    { i: "2", x: 0, y: 1, w: 1, h: 1 },
-    { i: "3", x: 1, y: 1, w: 1, h: 1 },
-    { i: "4", x: 0, y: 2, w: 1, h: 1 },
-    { i: "5", x: 1, y: 2, w: 1, h: 1 },
-    { i: "6", x: 0, y: 3, w: 1, h: 1 },
-    { i: "7", x: 0, y: 4, w: 2, h: 2 },
-    { i: "8", x: 1, y: 3, w: 1, h: 1 },
-    { i: "9", x: 0, y: 6, w: 2, h: 2 },
-    { i: "10", x: 0, y: 7, w: 1, h: 1 },
-    { i: "11", x: 1, y: 7, w: 1, h: 1 },
-    { i: "13", x: 0, y: 8, w: 2, h: 1 },
-    { i: "12", x: 0, y: 9, w: 1, h: 1 },
-  ],
-};
-
 const Dashboard: React.SFC<any> = ({ theme }) => {
   const { mode } = theme;
   const tooltipProps: any = {
@@ -90,10 +39,9 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
           rowHeight={300}
           noOfCols={{ xl: 5, lg: 3, md: 2, sm: 1 }}
           breakpoints={{ xl: 1900, lg: 1200, md: 996, sm: 768 }}
+          style={{ position: "relative" }}
         >
-          <Card key="1">
-            <CustomAreaChart key="1" />
-          </Card>
+          <CustomAreaChart key="1" />
           <Card key="2">
             <PieChart
               url={getURL("top-regions")}
