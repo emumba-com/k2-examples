@@ -17,15 +17,27 @@ import Tiles from "../Tiles";
 import StaticLegends from "../StaticLegend";
 import { PieCenterLabel, PopulationPieCenterLabel } from "../PieCenterLabel";
 import { BaseStyle } from "../../App.style";
-import { kFormatter, getMonthYearFromDate } from "../../utils";
+import {
+  kFormatter,
+  getMonthYearFromDate,
+  applyQueryParams,
+} from "../../utils";
 import { getURL, monthTickValues, shortMonthNames } from "../../constants";
-import { DashboardStyled, CardDividerDivStyled } from "./dashboard.style";
+import {
+  DashboardStyled,
+  CardDividerDivStyled,
+  FilterContainerDivStyled,
+} from "./dashboard.style";
 import BarChartWithDrilldown from "../BarChartWithDrilldown";
 import { withTheme } from "styled-components";
 import BubbleChartWithDrilldown from "../BubbleChartWithDrilldown/BubbleChart";
+import { Select } from "antd";
+const { Option } = Select;
 
 const Dashboard: React.SFC<any> = ({ theme }) => {
   const { mode } = theme;
+  const [period, setPeriod] = React.useState(1);
+  const [region, setRegion] = React.useState(null);
   const tooltipProps: any = {
     type: mode === "light" ? "light-default" : "dark",
   };
@@ -35,13 +47,24 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
       <DashboardStyled className="has-theme-provider">
         <BaseStyle />
         <Tiles />
+        <FilterContainerDivStyled>
+          <Select
+            defaultValue={1}
+            style={{ width: 120 }}
+            onChange={value => setPeriod(value)}
+          >
+            <Option value={1}>Last Year</Option>
+            <Option value={5}>Last 5 Years</Option>
+            <Option value={10}>Last 10 Years</Option>
+          </Select>
+        </FilterContainerDivStyled>
         <GridLayout
           rowHeight={300}
           noOfCols={{ xl: 5, lg: 3, md: 2, sm: 1 }}
           breakpoints={{ xl: 1900, lg: 1200, md: 996, sm: 768 }}
           style={{ position: "relative" }}
         >
-          <CustomAreaChart key="1" />
+          <CustomAreaChart period={period} region={region} key="1" />
           <Card key="2">
             <PieChart
               url={getURL("top-regions")}
@@ -59,6 +82,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
               )}
               radial={{ innerRadius: 0.75, anglePadding: 0.9 }}
               tooltip={tooltipProps}
+              onClick={e => setRegion(e.data.label.toLowerCase())}
             />
           </Card>
 
@@ -67,7 +91,10 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
           </Card>
 
           <Card key="4">
-            <BubbleChartWithDrilldown tooltipProps={tooltipProps} />
+            <BubbleChartWithDrilldown
+              region={region}
+              tooltipProps={tooltipProps}
+            />
           </Card>
 
           <Card key="5">
@@ -202,7 +229,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
           <Card key="9">
             <SankeyChart
               title="Product Sales By Region"
-              url={getURL("product-sales")}
+              url={getURL(applyQueryParams("product-sales", { region }))}
               nodeProps={{
                 width: 10,
                 shape: "rect",

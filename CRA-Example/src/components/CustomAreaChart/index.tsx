@@ -8,7 +8,12 @@ import {
   shortMonthNames,
   quarters,
 } from "../../constants";
-import { kFormatter, getMonthYearFromDate, getQuarter } from "../../utils";
+import {
+  kFormatter,
+  getMonthYearFromDate,
+  getQuarter,
+  applyQueryParams,
+} from "../../utils";
 import CustomDrawer from "./subComponents/CustomDrawer";
 import CustomSelect from "./subComponents/CustomSelect";
 import { CardStyled } from "./customAreaChart.style";
@@ -32,17 +37,24 @@ type Props = {
   width?: string | number;
   height?: string | number;
   key?: string;
+  period?: number;
+  region?: string;
 };
+
+const getBaseUrl = "sales-overview-multi";
+
 const CustomAreaChart = (props: Props) => {
   const [open, OpenDrawer] = React.useState(false);
   const [selectedRegion, setRegion] = React.useState([]);
   const [selectedQuarter, setQuarter] = React.useState(undefined);
+  const { period = 1, region } = props;
+  const apiUrlString = applyQueryParams(getBaseUrl, { region,period });
   const ref = React.useRef(null);
   const hasFilters =
     ref.current && ref.current.status !== "LOADING"
       ? ref.current.viewData !== ref.current.data
       : false;
-
+  console.log('ref.current :>> ', ref.current);
   const handleRegionFilter = value => {
     if (ref.current) {
       const { data, setViewData } = ref.current;
@@ -92,7 +104,7 @@ const CustomAreaChart = (props: Props) => {
         />
       </CustomDrawer>
       <AreaChart
-        url={getURL("sales-overview-multi")}
+        url={getURL(apiUrlString)}
         ref={ref}
         xyPlot={{
           stackBy: "y",
