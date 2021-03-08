@@ -41,6 +41,8 @@ export const CardDividerDivStyled = styled.div`
   }
 `;
 
-export const FilterContainerDivStyled=styled.div`
-  display:flex;
-`
+export const FilterContainerDivStyled = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px 10px 0 10px;
+`;
