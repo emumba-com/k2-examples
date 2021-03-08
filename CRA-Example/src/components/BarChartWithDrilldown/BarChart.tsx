@@ -60,7 +60,7 @@ const Drilldown = ({ onBackClick, tooltipProps, onClick }: DrilldownProps) => {
     <DrilldownWrapper>
       <BackButton onClick={onBackClick} label="Top 4 Best Sellers" />
       <BubbleChart
-        title="Revenue By Region"
+        title="Revenue By Region 123123123"
         url={getURL("revenue")}
         legends={false}
         label={({ data, radius }) => (

@@ -32,6 +32,9 @@ import BarChartWithDrilldown from "../BarChartWithDrilldown";
 import { withTheme } from "styled-components";
 import BubbleChartWithDrilldown from "../BubbleChartWithDrilldown/BubbleChart";
 import { Select } from "antd";
+import BackButton from "../BackButton/BackButton";
+import { DrilldownWrapper } from "../BarChartWithDrilldown/BarChart.style";
+import PieChartWithDrillDown from "../PieChartWithDrillDown";
 const { Option } = Select;
 
 const Dashboard: React.SFC<any> = ({ theme }) => {
@@ -66,24 +69,16 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
         >
           <CustomAreaChart period={period} region={region} key="1" />
           <Card key="2">
-            <PieChart
-              url={getURL("top-regions")}
-              title="Top Revenue By Region"
-              colors={{
-                dark: ["#e89e5d", "#30b1d9", "#b177bb", "#5579ae"],
-                light: ["#e89e5d", "#30b1d9", "#b177bb", "#5579ae"],
-              }}
-              legends={false}
-              centerLabel={PieCenterLabel}
-              label={({ data: { label, value } }) => (
-                <label style={{ fontSize: "13px", color: "#777777" }}>
-                  {label}:<strong>{` ${value}%`}</strong>
-                </label>
-              )}
-              radial={{ innerRadius: 0.75, anglePadding: 0.9 }}
-              tooltip={tooltipProps}
-              onClick={e => setRegion(e.data.label.toLowerCase())}
-            />
+            <DrilldownWrapper>
+              <PieChartWithDrillDown
+                tooltipProps={tooltipProps}
+                onBackClick={() => {
+                  setRegion(null);
+                }}
+                region={region}
+                onClick={e => !region && setRegion(e.data.label.toLowerCase())}
+              />
+            </DrilldownWrapper>
           </Card>
 
           <Card key="3">
