@@ -40,3 +40,9 @@ export const CardDividerDivStyled = styled.div`
     padding-top: 15px;
   }
 `;
+
+export const FilterContainerDivStyled = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px 10px 0 10px;
+`;

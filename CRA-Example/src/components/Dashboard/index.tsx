@@ -17,15 +17,35 @@ import Tiles from "../Tiles";
 import StaticLegends from "../StaticLegend";
 import { PieCenterLabel, PopulationPieCenterLabel } from "../PieCenterLabel";
 import { BaseStyle } from "../../App.style";
-import { kFormatter, getMonthYearFromDate } from "../../utils";
-import { getURL, monthTickValues, shortMonthNames } from "../../constants";
-import { DashboardStyled, CardDividerDivStyled } from "./dashboard.style";
+import {
+  kFormatter,
+  getMonthYearFromDate,
+  applyQueryParams,
+} from "../../utils";
+import {
+  getURL,
+  monthTickValues,
+  shortMonthNames,
+  yearTickValues,
+} from "../../constants";
+import {
+  DashboardStyled,
+  CardDividerDivStyled,
+  FilterContainerDivStyled,
+} from "./dashboard.style";
 import BarChartWithDrilldown from "../BarChartWithDrilldown";
 import { withTheme } from "styled-components";
 import BubbleChartWithDrilldown from "../BubbleChartWithDrilldown/BubbleChart";
+import { Select } from "antd";
+import BackButton from "../BackButton/BackButton";
+import { DrilldownWrapper } from "../BarChartWithDrilldown/BarChart.style";
+import PieChartWithDrillDown from "../PieChartWithDrillDown";
+const { Option } = Select;
 
 const Dashboard: React.SFC<any> = ({ theme }) => {
   const { mode } = theme;
+  const [period, setPeriod] = React.useState(1);
+  const [region, setRegion] = React.useState(null);
   const tooltipProps: any = {
     type: mode === "light" ? "light-default" : "dark",
   };
@@ -35,39 +55,50 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
       <DashboardStyled className="has-theme-provider">
         <BaseStyle />
         <Tiles />
+        <FilterContainerDivStyled>
+          <Select
+            defaultValue={1}
+            style={{ width: 120 }}
+            onChange={value => setPeriod(value)}
+          >
+            <Option value={1}>Last Year</Option>
+            <Option value={5}>Last 5 Years</Option>
+            <Option value={10}>Last 10 Years</Option>
+          </Select>
+        </FilterContainerDivStyled>
         <GridLayout
           rowHeight={300}
           noOfCols={{ xl: 5, lg: 3, md: 2, sm: 1 }}
           breakpoints={{ xl: 1900, lg: 1200, md: 996, sm: 768 }}
           style={{ position: "relative" }}
         >
-          <CustomAreaChart key="1" />
-          <Card key="2">
-            <PieChart
-              url={getURL("top-regions")}
-              title="Top Revenue By Region"
-              colors={{
-                dark: ["#e89e5d", "#30b1d9", "#b177bb", "#5579ae"],
-                light: ["#e89e5d", "#30b1d9", "#b177bb", "#5579ae"],
-              }}
-              legends={false}
-              centerLabel={PieCenterLabel}
-              label={({ data: { label, value } }) => (
-                <label style={{ fontSize: "13px", color: "#777777" }}>
-                  {label}:<strong>{` ${value}%`}</strong>
-                </label>
-              )}
-              radial={{ innerRadius: 0.75, anglePadding: 0.9 }}
-              tooltip={tooltipProps}
-            />
+          <Card key="1">
+            <DrilldownWrapper>
+              <PieChartWithDrillDown
+                tooltipProps={tooltipProps}
+                onBackClick={() => {
+                  setRegion(null);
+                }}
+                region={region}
+                onClick={e => {
+                  !region && setRegion(e.data.label);
+                }}
+              />
+            </DrilldownWrapper>
           </Card>
+          <CustomAreaChart period={period} region={region} key="2" />
 
           <Card key="3">
-            <BarChartWithDrilldown tooltipProps={tooltipProps} />
+            <BubbleChartWithDrilldown
+              region={region}
+              tooltipProps={tooltipProps}
+            />
           </Card>
-
           <Card key="4">
-            <BubbleChartWithDrilldown tooltipProps={tooltipProps} />
+            <BarChartWithDrilldown
+              region={region}
+              tooltipProps={tooltipProps}
+            />
           </Card>
 
           <Card key="5">
@@ -144,12 +175,12 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             <CardDividerDivStyled>
               <div className="section-1">
                 <LineChart
-                  url={getURL("trend-best-sellers")}
+                  url={getURL(
+                    applyQueryParams("trend-best-sellers", { period }),
+                  )}
                   title="Revenue Trend By Best Sellers"
                   xyPlot={{
-                    xType: "time",
                     yDomain: [0, 20000],
-                    xDomain: [1546300800000, 1575158400000],
                     margin: { top: 30, bottom: 50 },
                   }}
                   horizontalGridLines={{
@@ -161,11 +192,13 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
                     tickSizeInner: 0,
                     tickPadding: 20,
                     hideLine: true,
-                    tickTotal: 12,
-                    tickValues: monthTickValues,
+                    tickValues: period > 1 ? yearTickValues : monthTickValues,
                     tickFormat: (time: number) => {
-                      const monthNames = shortMonthNames;
+                      if (period > 1) {
+                        return time;
+                      }
                       const date = new Date(time);
+                      const monthNames = shortMonthNames;
                       return `${monthNames[date.getMonth()]}`;
                     },
                   }}
@@ -185,7 +218,10 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
                   classes={{ crosshair: "crosshair-root" }}
                   crosshair={{
                     yFormatter: val => kFormatter(val),
-                    xFormatter: val => getMonthYearFromDate(new Date(val)),
+                    xFormatter: val =>
+                      period > 1
+                        ? val.toString()
+                        : getMonthYearFromDate(new Date(val)),
                   }}
                 />
               </div>
@@ -201,8 +237,10 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
 
           <Card key="9">
             <SankeyChart
-              title="Product Sales By Region"
-              url={getURL("product-sales")}
+              title={
+                region ? `${region} Product Sales` : "Product Sales By Region"
+              }
+              url={getURL(applyQueryParams("product-sales", { region }))}
               nodeProps={{
                 width: 10,
                 shape: "rect",
@@ -279,7 +317,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
 
           <Card key="11">
             <BarChart
-              url={getURL("brand-engagement")}
+              url={getURL(applyQueryParams("brand-engagement", { region }))}
               title="Brand Engagement"
               barWidth={0.4}
               xyPlot={{
@@ -356,12 +394,10 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
 
           <Card key="13">
             <AreaChart
-              url={getURL("sales-overview")}
+              url={getURL(applyQueryParams("sales-overview", { period }))}
               title="Sales Overview"
               xyPlot={{
-                xType: "time",
                 yDomain: [0, 20000],
-                xDomain: [1546300800000, 1575158400000],
                 margin: { top: 30, bottom: 30 },
               }}
               yAxis={{
@@ -383,11 +419,13 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
                 hideLine: true,
                 tickSizeOuter: 6,
                 tickSizeInner: 0,
-                tickTotal: 12,
-                tickValues: monthTickValues,
+                tickValues: period > 1 ? yearTickValues : monthTickValues,
                 tickFormat: (time: number) => {
-                  const monthNames = shortMonthNames;
+                  if (period > 1) {
+                    return time;
+                  }
                   const date = new Date(time);
+                  const monthNames = shortMonthNames;
                   return `${monthNames[date.getMonth()]}`;
                 },
               }}
@@ -426,7 +464,10 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
               classes={{ crosshair: "crosshair-root" }}
               crosshair={{
                 yFormatter: val => kFormatter(val),
-                xFormatter: val => getMonthYearFromDate(new Date(val)),
+                xFormatter: val =>
+                  period > 1
+                    ? val.toString()
+                    : getMonthYearFromDate(new Date(val)),
               }}
             />
           </Card>

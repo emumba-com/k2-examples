@@ -79,8 +79,8 @@ export const theme: ThemeInterfaceProps = {
   },
   gridLayout: {
     layout: [
+      { widthUnits:{ xl: 5, lg: 3, md: 2, sm: 1 }},
       { widthUnits: 2 },
-      { widthUnits: 1 },
       { widthUnits: 1 },
       { widthUnits: 1 },
       { widthUnits: 1 },

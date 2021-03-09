@@ -73,3 +73,20 @@ export function getFormattedDate(date: Date) {
  */
 export const getQuarter = time =>
   Math.floor((new Date(time).getMonth() + 3) / 3);
+
+/**
+ * Set Query params in string give base url and query params object
+ * @param base
+ * @param params
+ */
+export const applyQueryParams = (
+  base: string,
+  params: { [key: string]: string | number | boolean },
+) => {
+  return Object.entries(params)
+    .filter(v => v[1])
+    .reduce((prev: string, curr, index: number) => {
+      prev = `${prev}${index === 0 ? "?" : "&"}${curr[0]}=${curr[1]}`;
+      return prev;
+    }, base);
+};

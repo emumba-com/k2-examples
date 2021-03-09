@@ -1,0 +1,56 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+
+
+[
+      {
+        "color": "#a575b6",
+        "curve": "curveMonotoneX",
+        "data": [
+          {
+            "x": 2011,
+            "y": 5000
+          },
+          {
+            "x": 2012,
+            "y": 2500
+          },
+          {
+            "x": 2013,
+            "y": 8000
+          },
+          {
+            "x": 2014,
+            "y": 6000
+          },
+          {
+            "x": 2015,
+            "y": 10000
+          },
+          {
+            "x": 2016,
+            "y": 15000
+          },
+          {
+            "x": 2017,
+            "y": 19000
+          },
+          {
+            "x": 2018,
+            "y": 17000
+          },
+          {
+            "x": 2019,
+            "y": 13000
+          },
+          {
+            "x": 2020,
+            "y": 11000
+          }
+        ],
+        "name": "Sales",
+        "opacity": 0.2,
+        "stroke": "#a575b6"
+      }
+]
