@@ -7,7 +7,7 @@ Access-Control-Allow-Origin: *
    {
         "color": "#f29d56",
         "curve": "curveMonotoneX",
-        "data": [           
+        "data": [
           {
             "x": 2016,
             "y": 4000
@@ -29,7 +29,7 @@ Access-Control-Allow-Origin: *
             "y": 2500
           }
         ],
-        "name": "Nigeria",
+        "name": "Europe",
         "opacity": 0.2,
         "stroke": "#e89e5d"
       }
@@ -59,7 +59,7 @@ Access-Control-Allow-Origin: *
             "y": 3000
           }
         ],
-        "name": "Ghana",
+        "name": "America",
         "opacity": 0.2,
         "stroke": "#12aada"
       },
@@ -88,7 +88,7 @@ Access-Control-Allow-Origin: *
             "y": 4000
           }
         ],
-        "name": "Kenya",
+        "name": "Africa",
         "opacity": 0.2,
         "stroke": "#b177bb"
       }

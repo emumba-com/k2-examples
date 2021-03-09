@@ -7,7 +7,7 @@ Access-Control-Allow-Origin: *
    {
         "color": "#f29d56",
         "curve": "curveMonotoneX",
-        "data": [           
+        "data": [
           {
             "x": 2016,
             "y": 4000
@@ -29,7 +29,7 @@ Access-Control-Allow-Origin: *
             "y": 2500
           }
         ],
-        "name": "Nigeria",
+        "name": "Germany",
         "opacity": 0.2,
         "stroke": "#e89e5d"
       }
@@ -59,7 +59,7 @@ Access-Control-Allow-Origin: *
             "y": 3000
           }
         ],
-        "name": "Ghana",
+        "name": "France",
         "opacity": 0.2,
         "stroke": "#12aada"
       },
@@ -88,9 +88,38 @@ Access-Control-Allow-Origin: *
             "y": 4000
           }
         ],
-        "name": "Kenya",
+        "name": "Italy",
         "opacity": 0.2,
         "stroke": "#b177bb"
+      },
+         {
+        "color": "#b2711b",
+        "curve": "curveMonotoneX",
+        "data": [
+          {
+            "x": 2016,
+            "y": 4500
+          },
+          {
+            "x": 2017,
+            "y": 3500
+          },
+          {
+            "x": 2018,
+            "y": 3000
+          },
+          {
+            "x": 2019,
+            "y": 3500
+          },
+          {
+            "x": 2020,
+            "y": 4000
+          }
+        ],
+        "name": "Netherlands",
+        "opacity": 0.2,
+        "stroke": "#b2711b"
       }
      
 ]

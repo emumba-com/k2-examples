@@ -7,7 +7,27 @@ Access-Control-Allow-Origin: *
    {
         "color": "#f29d56",
         "curve": "curveMonotoneX",
-        "data": [           
+        "data": [
+           {
+            "x": 2011,
+            "y": 500
+          },
+          {
+            "x": 2012,
+            "y": 1500
+          },
+          {
+            "x": 2013,
+            "y": 1500
+          },
+          {
+            "x": 2014,
+            "y": 1500
+          },
+          {
+            "x": 2015,
+            "y": 2000
+          },
           {
             "x": 2016,
             "y": 4000
@@ -29,7 +49,7 @@ Access-Control-Allow-Origin: *
             "y": 2500
           }
         ],
-        "name": "Nigeria",
+        "name": "Europe",
         "opacity": 0.2,
         "stroke": "#e89e5d"
       }
@@ -38,6 +58,26 @@ Access-Control-Allow-Origin: *
         "color": "#30b1d9",
         "curve": "curveMonotoneX",
         "data": [
+            {
+            "x": 2011,
+            "y": 4000
+          },
+          {
+            "x": 2012,
+            "y": 1000
+          },
+          {
+            "x": 2013,
+            "y": 1500
+          },
+          {
+            "x": 2014,
+            "y": 5000
+          },
+          {
+            "x": 2015,
+            "y": 4300
+          },
           {
             "x": 2016,
             "y": 7500
@@ -59,7 +99,7 @@ Access-Control-Allow-Origin: *
             "y": 3000
           }
         ],
-        "name": "Ghana",
+        "name": "America",
         "opacity": 0.2,
         "stroke": "#12aada"
       },
@@ -67,6 +107,26 @@ Access-Control-Allow-Origin: *
         "color": "#b177bb",
         "curve": "curveMonotoneX",
         "data": [
+         {
+            "x": 2011,
+            "y": 5000
+          },
+          {
+            "x": 2012,
+            "y": 8500
+          },
+          {
+            "x": 2013,
+            "y": 5000
+          },
+          {
+            "x": 2014,
+            "y": 2000
+          },
+          {
+            "x": 2015,
+            "y": 4200
+          },
           {
             "x": 2016,
             "y": 4500
@@ -88,7 +148,7 @@ Access-Control-Allow-Origin: *
             "y": 4000
           }
         ],
-        "name": "Kenya",
+        "name": "Africa",
         "opacity": 0.2,
         "stroke": "#b177bb"
       }
