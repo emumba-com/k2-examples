@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+
+
+[
+  {"label":"Nigeria","value":45},
+  {"label":"Ghana","value":20},
+  {"label":"Kenya","value":35}
+]

@@ -1,0 +1,19 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+
+
+[
+  {"color": "#e89e5d",
+  "labelColor": "#ffffff",
+        "name": "Germany",
+        "value": 50},
+         {"color":  "#30b1d9",
+         "labelColor": "#ffffff",
+        "name": "France",
+        "value": 25},
+         {"color":  "#b177bb",
+         "labelColor": "#ffffff",
+        "name": "Italy",
+        "value": 16.7}
+]

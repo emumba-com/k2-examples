@@ -72,8 +72,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
           breakpoints={{ xl: 1900, lg: 1200, md: 996, sm: 768 }}
           style={{ position: "relative" }}
         >
-          <CustomAreaChart period={period} region={region} key="1" />
-          <Card key="2">
+          <Card key="1">
             <DrilldownWrapper>
               <PieChartWithDrillDown
                 tooltipProps={tooltipProps}
@@ -87,13 +86,16 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
               />
             </DrilldownWrapper>
           </Card>
+          <CustomAreaChart period={period} region={region} key="2" />
 
           <Card key="3">
-            <BarChartWithDrilldown region={region} tooltipProps={tooltipProps} />
-          </Card>
-
-          <Card key="4">
             <BubbleChartWithDrilldown
+              region={region}
+              tooltipProps={tooltipProps}
+            />
+          </Card>
+          <Card key="4">
+            <BarChartWithDrilldown
               region={region}
               tooltipProps={tooltipProps}
             />
@@ -235,7 +237,9 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
 
           <Card key="9">
             <SankeyChart
-              title={region?(`${region} Product Sales`):"Product Sales By Region"}
+              title={
+                region ? `${region} Product Sales` : "Product Sales By Region"
+              }
               url={getURL(applyQueryParams("product-sales", { region }))}
               nodeProps={{
                 width: 10,
