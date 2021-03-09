@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const DashboardStyled = styled.main`
   margin: 0 auto;
   margin-top: 50px;
-  padding-top: 6px;
   .rv-xy-plot__axis__tick__text {
     font-size: 12px;
   }
@@ -41,8 +40,28 @@ export const CardDividerDivStyled = styled.div`
   }
 `;
 
+export const ChartFilterDivStyled = styled.div`
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  .section-1 {
+    flex-basis: 50%;
+  }
+  .section-2 {
+    flex-basis: 50%;
+  }
+`;
+
 export const FilterContainerDivStyled = styled.div`
   display: flex;
-  justify-content: flex-end;
-  padding: 15px 10px 0 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  height: 50px;
+  background-color: #f6f6f6;
+  .filter-title {
+    color: #6e79ff;
+    font-weight: bolder;
+    font-size: 16px;
+  }
 `;

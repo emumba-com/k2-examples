@@ -15,7 +15,7 @@ import RevenueTrendTiles from "../RevenueTrendTiles";
 import CustomAreaChart from "../CustomAreaChart";
 import Tiles from "../Tiles";
 import StaticLegends from "../StaticLegend";
-import { PieCenterLabel, PopulationPieCenterLabel } from "../PieCenterLabel";
+import { PopulationPieCenterLabel } from "../PieCenterLabel";
 import { BaseStyle } from "../../App.style";
 import {
   kFormatter,
@@ -32,14 +32,16 @@ import {
   DashboardStyled,
   CardDividerDivStyled,
   FilterContainerDivStyled,
+  ChartFilterDivStyled,
 } from "./dashboard.style";
 import BarChartWithDrilldown from "../BarChartWithDrilldown";
 import { withTheme } from "styled-components";
 import BubbleChartWithDrilldown from "../BubbleChartWithDrilldown/BubbleChart";
-import { Select } from "antd";
+import { Col, Row, Select } from "antd";
 import BackButton from "../BackButton/BackButton";
 import { DrilldownWrapper } from "../BarChartWithDrilldown/BarChart.style";
-import PieChartWithDrillDown from "../PieChartWithDrillDown";
+import PieChartFilter from "../PieChartFilter";
+import RegionRevenueTiles from "../RegionRevenueTiles";
 const { Option } = Select;
 
 const Dashboard: React.SFC<any> = ({ theme }) => {
@@ -54,11 +56,13 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
       <Header />
       <DashboardStyled className="has-theme-provider">
         <BaseStyle />
-        <Tiles />
         <FilterContainerDivStyled>
+          <span className="filter-title">
+            Filter
+          </span>
           <Select
             defaultValue={1}
-            style={{ width: 120 }}
+            style={{ width: 140 }}
             onChange={value => setPeriod(value)}
           >
             <Option value={1}>Last Year</Option>
@@ -66,42 +70,39 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             <Option value={10}>Last 10 Years</Option>
           </Select>
         </FilterContainerDivStyled>
+        <Tiles />
+        <PieChartFilter
+          tooltipProps={tooltipProps}
+          onBackClick={() => {
+            setRegion(null);
+          }}
+          region={region}
+          onClick={e => {
+            !region && setRegion(e.data.label);
+          }}
+        />
         <GridLayout
           rowHeight={300}
           noOfCols={{ xl: 5, lg: 3, md: 2, sm: 1 }}
           breakpoints={{ xl: 1900, lg: 1200, md: 996, sm: 768 }}
           style={{ position: "relative" }}
         >
-          <Card key="1">
-            <DrilldownWrapper>
-              <PieChartWithDrillDown
-                tooltipProps={tooltipProps}
-                onBackClick={() => {
-                  setRegion(null);
-                }}
-                region={region}
-                onClick={e => {
-                  !region && setRegion(e.data.label);
-                }}
-              />
-            </DrilldownWrapper>
-          </Card>
-          <CustomAreaChart period={period} region={region} key="2" />
+          <CustomAreaChart period={period} region={region} key="1" />
 
-          <Card key="3">
+          <Card key="2">
             <BubbleChartWithDrilldown
               region={region}
               tooltipProps={tooltipProps}
             />
           </Card>
-          <Card key="4">
+          <Card key="3">
             <BarChartWithDrilldown
               region={region}
               tooltipProps={tooltipProps}
             />
           </Card>
 
-          <Card key="5">
+          <Card key="4">
             <ColumnChart
               url={getURL("brand-engagement-single")}
               title="Brand Engagement Overview"
@@ -131,7 +132,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             />
           </Card>
 
-          <Card key="6">
+          <Card key="5">
             <BarChart
               url={getURL("brand-following")}
               title="Brand Following"
@@ -171,7 +172,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             />
           </Card>
 
-          <Card key="7">
+          <Card key="6">
             <CardDividerDivStyled>
               <div className="section-1">
                 <LineChart
@@ -231,11 +232,11 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             </CardDividerDivStyled>
           </Card>
 
-          <Card key="8">
+          <Card key="7">
             <HighChartBulletGraph />
           </Card>
 
-          <Card key="9">
+          <Card key="8">
             <SankeyChart
               title={
                 region ? `${region} Product Sales` : "Product Sales By Region"
@@ -252,7 +253,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             />
           </Card>
 
-          <Card key="10">
+          <Card key="9">
             <PieChart
               url="https://countries-274616.ew.r.appspot.com/"
               title="Region's Population (via GraphQL)"
@@ -315,7 +316,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             />
           </Card>
 
-          <Card key="11">
+          <Card key="10">
             <BarChart
               url={getURL(applyQueryParams("brand-engagement", { region }))}
               title="Brand Engagement"
@@ -349,7 +350,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             />
           </Card>
 
-          <Card key="12">
+          <Card key="11">
             <ColumnChart
               url={getURL("brand-engagement-grouped")}
               title="Brand Engagement"
@@ -392,7 +393,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             />
           </Card>
 
-          <Card key="13">
+          <Card key="12">
             <AreaChart
               url={getURL(applyQueryParams("sales-overview", { period }))}
               title="Sales Overview"
