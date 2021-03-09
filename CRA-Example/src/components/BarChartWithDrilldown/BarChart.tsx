@@ -4,6 +4,7 @@ import { getURL } from "../../constants";
 import { BubbleChart } from "@k2/d3-viz";
 import { DrilldownWrapper } from "./BarChart.style";
 import BackButton from "../BackButton/BackButton";
+import TitleWithInfo from "../TitleWithInfo";
 
 type ChartProps = {
   onClick: (event: any) => void;
@@ -14,7 +15,12 @@ const Chart = ({ onClick, tooltipProps }: ChartProps) => {
     <DrilldownWrapper>
       <BarChart
         url={getURL("best-sellers")}
-        title="Top 4 Best Sellers"
+        title={
+          <TitleWithInfo
+            title="Top 4 Best Sellers"
+            infoText="Click on a Bar to see region-wise sales"
+          />
+        }
         barWidth={0.5}
         legends={false}
         verticalGridLines={false}
@@ -60,7 +66,12 @@ const Drilldown = ({ onBackClick, tooltipProps, onClick }: DrilldownProps) => {
     <DrilldownWrapper>
       <BackButton onClick={onBackClick} label="Top 4 Best Sellers" />
       <BubbleChart
-        title="Revenue By Region"
+        title={
+          <TitleWithInfo
+            title="Revenue By Region"
+            infoText="Click on a Bubble to drilldown region's revenue"
+          />
+        }
         url={getURL("revenue")}
         legends={false}
         label={({ data, radius }) => (

@@ -23,6 +23,7 @@ import { DashboardStyled, CardDividerDivStyled } from "./dashboard.style";
 import BarChartWithDrilldown from "../BarChartWithDrilldown";
 import { withTheme } from "styled-components";
 import BubbleChartWithDrilldown from "../BubbleChartWithDrilldown/BubbleChart";
+import TitleWithInfo from "../TitleWithInfo";
 
 const Dashboard: React.SFC<any> = ({ theme }) => {
   const { mode } = theme;
@@ -45,7 +46,12 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
           <Card key="2">
             <PieChart
               url={getURL("top-regions")}
-              title="Top Revenue By Region"
+              title={
+                <TitleWithInfo
+                  title="Top Revenue By Region"
+                  infoText="Clicking on a slice will set the region filter to all charts in this Dashboard"
+                />
+              }
               colors={{
                 dark: ["#e89e5d", "#30b1d9", "#b177bb", "#5579ae"],
                 light: ["#e89e5d", "#30b1d9", "#b177bb", "#5579ae"],
@@ -217,7 +223,12 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
           <Card key="10">
             <PieChart
               url="https://countries-274616.ew.r.appspot.com/"
-              title="Region's Population (via GraphQL)"
+              title={
+                <TitleWithInfo
+                  title="Region's Population (via GraphQL)"
+                  infoText="Data for this chart is being fetched from a GraphQL server for demonstration purposes."
+                />
+              }
               graphQLOptions={{
                 query: `
                     query {
