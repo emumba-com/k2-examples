@@ -15,7 +15,7 @@ const Chart = ({ tooltipProps, onClick, region }: ChartProps) => {
   return (
     <ChartWrapper style={{ width: "100%", height: "100%" }}>
       <BubbleChart
-        title="Top Revenue By Region"
+        title={region ? `${region} Top Revenue` : "Top Revenue By Region"}
         url={getURL(applyQueryParams("top-revenue", { region }))}
         legends={false}
         label={({ data, radius }) => (
@@ -54,7 +54,7 @@ const Drilldown = ({ tooltipProps, region, onBackClick }: DrilldownProps) => {
   return (
     <ModalWrapper
       visible
-      title="Product Sales By Region"
+      title={region ? `${region} Product Sales` : "Product Sales By Region"}
       destroyOnClose
       onCancel={onBackClick}
       footer={null}

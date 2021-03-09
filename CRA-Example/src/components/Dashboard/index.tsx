@@ -82,14 +82,14 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
                 }}
                 region={region}
                 onClick={e => {
-                  !region && setRegion(e.data.label.toLowerCase());
+                  !region && setRegion(e.data.label);
                 }}
               />
             </DrilldownWrapper>
           </Card>
 
           <Card key="3">
-            <BarChartWithDrilldown tooltipProps={tooltipProps} />
+            <BarChartWithDrilldown region={region} tooltipProps={tooltipProps} />
           </Card>
 
           <Card key="4">
@@ -235,7 +235,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
 
           <Card key="9">
             <SankeyChart
-              title="Product Sales By Region"
+              title={region?(`${region} Product Sales`):"Product Sales By Region"}
               url={getURL(applyQueryParams("product-sales", { region }))}
               nodeProps={{
                 width: 10,
@@ -415,7 +415,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
                 hideLine: true,
                 tickSizeOuter: 6,
                 tickSizeInner: 0,
-                 tickValues: period > 1 ? yearTickValues : monthTickValues,
+                tickValues: period > 1 ? yearTickValues : monthTickValues,
                 tickFormat: (time: number) => {
                   if (period > 1) {
                     return time;

@@ -20,10 +20,10 @@ const PieChartWithDrillDown = ({
 }: ChartProps) => {
   return (
     <PieChartDrilldownWrapper>
-      {region&&<BackButton label="Revenue By Region" onClick={onBackClick} />}
+      {region&&<BackButton label="Top Revenue By Region" onClick={onBackClick} />}
       <PieChart
         url={getURL(applyQueryParams("top-regions", { region }))}
-        title="Top Revenue By Region"
+        title={region?(`${region} Top Revenue`):"Top Revenue By Region"}
         classes={
         {
           xyplot:"pieXYPlot"
