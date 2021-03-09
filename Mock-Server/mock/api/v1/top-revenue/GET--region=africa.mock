@@ -6,18 +6,14 @@ Access-Control-Allow-Origin: *
 [
   {"color": "#e89e5d",
   "labelColor": "#ffffff",
-        "name": "Virginia",
+        "name": "Nigeria",
         "value": 50},
          {"color":  "#30b1d9",
          "labelColor": "#ffffff",
-        "name": "California",
+        "name": "Kenya",
         "value": 25},
          {"color":  "#b177bb",
          "labelColor": "#ffffff",
-        "name": "Texas",
-        "value": 16.7},
-         {"color":  "#5579ae",
-         "labelColor": "#ffffff",
-        "name": "Georgia",
-        "value": 8.3}
+        "name": "Ghana",
+        "value": 16.7}
 ]

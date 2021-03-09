@@ -177,7 +177,7 @@ Access-Control-Allow-Origin: *
         "stroke": "#b177bb"
       },
          {
-        "color": "#b177bb",
+        "color": "#b2711b",
         "curve": "curveMonotoneX",
         "data": [
          {
@@ -231,7 +231,7 @@ Access-Control-Allow-Origin: *
         ],
         "name": "Netherlands",
         "opacity": 0.2,
-        "stroke": "#b177bb"
+        "stroke": "#b2711b"
       }
      
 ]

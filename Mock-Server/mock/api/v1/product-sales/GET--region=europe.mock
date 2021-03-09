@@ -7,19 +7,19 @@ Access-Control-Allow-Origin: *
   "nodes": [
     {
       "id": "Node1",
-      "label": "Virginia",
+      "label": "Germany",
       "level": "Region",
       "color": "#30b1d9"
     },
     {
       "id": "Node2",
-      "label": "California",
+      "label": "France",
       "level": "Region",
       "color": "#b177bb"
     },
     {
       "id": "Node3",
-      "label": "Texas",
+      "label": "Italy",
       "level": "Region",
       "color": "#7bb844"
     },

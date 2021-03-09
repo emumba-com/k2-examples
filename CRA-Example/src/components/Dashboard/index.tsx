@@ -22,7 +22,12 @@ import {
   getMonthYearFromDate,
   applyQueryParams,
 } from "../../utils";
-import { getURL, monthTickValues, shortMonthNames } from "../../constants";
+import {
+  getURL,
+  monthTickValues,
+  shortMonthNames,
+  yearTickValues,
+} from "../../constants";
 import {
   DashboardStyled,
   CardDividerDivStyled,
@@ -76,7 +81,9 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
                   setRegion(null);
                 }}
                 region={region}
-                onClick={e => !region && setRegion(e.data.label.toLowerCase())}
+                onClick={e => {
+                  !region && setRegion(e.data.label.toLowerCase());
+                }}
               />
             </DrilldownWrapper>
           </Card>
@@ -166,12 +173,12 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             <CardDividerDivStyled>
               <div className="section-1">
                 <LineChart
-                  url={getURL("trend-best-sellers")}
+                  url={getURL(
+                    applyQueryParams("trend-best-sellers", { period }),
+                  )}
                   title="Revenue Trend By Best Sellers"
                   xyPlot={{
-                    xType: "time",
                     yDomain: [0, 20000],
-                    xDomain: [1546300800000, 1575158400000],
                     margin: { top: 30, bottom: 50 },
                   }}
                   horizontalGridLines={{
@@ -183,11 +190,13 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
                     tickSizeInner: 0,
                     tickPadding: 20,
                     hideLine: true,
-                    tickTotal: 12,
-                    tickValues: monthTickValues,
+                    tickValues: period > 1 ? yearTickValues : monthTickValues,
                     tickFormat: (time: number) => {
-                      const monthNames = shortMonthNames;
+                      if (period > 1) {
+                        return time;
+                      }
                       const date = new Date(time);
+                      const monthNames = shortMonthNames;
                       return `${monthNames[date.getMonth()]}`;
                     },
                   }}
@@ -207,7 +216,10 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
                   classes={{ crosshair: "crosshair-root" }}
                   crosshair={{
                     yFormatter: val => kFormatter(val),
-                    xFormatter: val => getMonthYearFromDate(new Date(val)),
+                    xFormatter: val =>
+                      period > 1
+                        ? val.toString()
+                        : getMonthYearFromDate(new Date(val)),
                   }}
                 />
               </div>
@@ -301,7 +313,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
 
           <Card key="11">
             <BarChart
-              url={getURL("brand-engagement")}
+              url={getURL(applyQueryParams("brand-engagement", { region }))}
               title="Brand Engagement"
               barWidth={0.4}
               xyPlot={{
@@ -378,12 +390,10 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
 
           <Card key="13">
             <AreaChart
-              url={getURL("sales-overview")}
+              url={getURL(applyQueryParams("sales-overview", { period }))}
               title="Sales Overview"
               xyPlot={{
-                xType: "time",
                 yDomain: [0, 20000],
-                xDomain: [1546300800000, 1575158400000],
                 margin: { top: 30, bottom: 30 },
               }}
               yAxis={{
@@ -405,11 +415,13 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
                 hideLine: true,
                 tickSizeOuter: 6,
                 tickSizeInner: 0,
-                tickTotal: 12,
-                tickValues: monthTickValues,
+                 tickValues: period > 1 ? yearTickValues : monthTickValues,
                 tickFormat: (time: number) => {
-                  const monthNames = shortMonthNames;
+                  if (period > 1) {
+                    return time;
+                  }
                   const date = new Date(time);
+                  const monthNames = shortMonthNames;
                   return `${monthNames[date.getMonth()]}`;
                 },
               }}
@@ -448,7 +460,10 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
               classes={{ crosshair: "crosshair-root" }}
               crosshair={{
                 yFormatter: val => kFormatter(val),
-                xFormatter: val => getMonthYearFromDate(new Date(val)),
+                xFormatter: val =>
+                  period > 1
+                    ? val.toString()
+                    : getMonthYearFromDate(new Date(val)),
               }}
             />
           </Card>
