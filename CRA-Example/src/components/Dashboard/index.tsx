@@ -77,7 +77,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             setRegion(null);
           }}
           region={region}
-          onClick={e => {
+          onPieChartClick={e => {
             !region && setRegion(e.data.label);
           }}
         />

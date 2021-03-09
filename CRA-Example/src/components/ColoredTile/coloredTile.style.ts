@@ -8,7 +8,7 @@ export const ColorTileStyled = styled.header<{
   background-color: ${props => props.backgroundColor};
   padding: 15px 35px 15px 10px;
   .title-wrapper {
-    color: #b8b8b8;
+    color: rgb(119, 119, 119);
     font-size: 12px;
   }
   .count-wrapper {

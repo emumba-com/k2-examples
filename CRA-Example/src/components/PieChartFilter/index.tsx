@@ -13,13 +13,13 @@ type ChartProps = {
   onBackClick: () => void;
   tooltipProps: any;
   region?: string;
-  onClick: (data: { data: any }) => void;
+  onPieChartClick: (data: { data: any }) => void;
 };
 const PieChartFilter = ({
   tooltipProps,
   region,
   onBackClick,
-  onClick,
+  onPieChartClick: onClick,
 }: ChartProps) => {
   return (
     <PieChartFilteredDivStyled>
@@ -58,7 +58,7 @@ const PieChartFilter = ({
               />
             </PieChartDrilldownWrapperStyled>
           </Col>
-          <Col xs={{ span: 24 }} md={{ span: 12 }} style={{ height: "300px" }}>
+          <Col xs={{ span: 24 }} md={{ span: 12 }} className="tiles-container">
             <RegionRevenueTiles
               url={getURL(applyQueryParams("top-regions", { region }))}
             />
