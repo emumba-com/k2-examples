@@ -59,7 +59,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
           }}
           region={region}
           onPieChartClick={e => {
-            !region && setRegion(e.data.label);
+            !region && e.data.label !== "Others" && setRegion(e.data.label);
           }}
         />
         <GridLayout

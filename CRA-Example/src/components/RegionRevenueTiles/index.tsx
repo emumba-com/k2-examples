@@ -13,7 +13,6 @@ const colors = ["#e89e5d", "#30b1d9", "#b177bb", "#5579ae"];
 const RegionRevenueTiles: React.SFC<RegionRevenueTilesProps> = ({
   data = [],
 }) => {
-  console.log("props :>> ", data);
   return (
     <RegionRevenueTilesDivStyled>
       <Row>
@@ -23,7 +22,7 @@ const RegionRevenueTiles: React.SFC<RegionRevenueTilesProps> = ({
               title={d.label}
               value={d.value}
               className="cellWrapper"
-              count={kFormatter(900000 * (1 / d.value))}
+              count={kFormatter(900000 * (d.value/100))}
               color={colors[i]}
             />
           </Col>
