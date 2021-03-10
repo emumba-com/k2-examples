@@ -46,4 +46,7 @@ export const CardStyled = styled(Card)`
       color: ${({ theme }) => theme.textColors.heading};
     }
   }
+  .filter-not-applicable {
+    color: ${({ theme }) => theme.textColors.normal};
+  }
 `;

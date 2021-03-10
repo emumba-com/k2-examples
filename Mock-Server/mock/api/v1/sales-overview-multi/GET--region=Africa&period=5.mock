@@ -1,0 +1,96 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+
+
+[
+   {
+        "color": "#f29d56",
+        "curve": "curveMonotoneX",
+        "data": [           
+          {
+            "x": 2016,
+            "y": 4000
+          },
+          {
+            "x": 2017,
+            "y": 4500
+          },
+          {
+            "x": 2018,
+            "y": 2300
+          },
+          {
+            "x": 2019,
+            "y": 3650
+          },
+          {
+            "x": 2020,
+            "y": 2500
+          }
+        ],
+        "name": "Nigeria",
+        "opacity": 0.2,
+        "stroke": "#e89e5d"
+      }
+   ,
+      {
+        "color": "#30b1d9",
+        "curve": "curveMonotoneX",
+        "data": [
+          {
+            "x": 2016,
+            "y": 7500
+          },
+          {
+            "x": 2017,
+            "y": 5000
+          },
+          {
+            "x": 2018,
+            "y": 6000
+          },
+          {
+            "x": 2019,
+            "y": 7000
+          },
+          {
+            "x": 2020,
+            "y": 3000
+          }
+        ],
+        "name": "Ghana",
+        "opacity": 0.2,
+        "stroke": "#12aada"
+      },
+         {
+        "color": "#b177bb",
+        "curve": "curveMonotoneX",
+        "data": [
+          {
+            "x": 2016,
+            "y": 4500
+          },
+          {
+            "x": 2017,
+            "y": 3500
+          },
+          {
+            "x": 2018,
+            "y": 3000
+          },
+          {
+            "x": 2019,
+            "y": 3500
+          },
+          {
+            "x": 2020,
+            "y": 4000
+          }
+        ],
+        "name": "Kenya",
+        "opacity": 0.2,
+        "stroke": "#b177bb"
+      }
+     
+]

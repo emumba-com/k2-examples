@@ -84,7 +84,6 @@ export const theme: ThemeInterfaceProps = {
       { widthUnits: 1 },
       { widthUnits: 1 },
       { widthUnits: 1 },
-      { widthUnits: 1 },
       { widthUnits: 2, heightUnits: 2 },
       { widthUnits: 1 },
       { widthUnits: 2, heightUnits: 2 },
@@ -94,7 +93,7 @@ export const theme: ThemeInterfaceProps = {
       { widthUnits: { xl: 1, lg: 2 } },
     ],
     rowHeight: 300,
-    noOfCols: 3,
+    noOfCols: 5,
     gridGap: [15, 15],
   },
   card: {

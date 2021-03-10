@@ -1,0 +1,50 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+
+
+[
+  {
+    "name":"Virginia",
+    "data":[
+      {"y":"Facebook","x": 20},
+      {"y":"Instagram","x": 50},
+      {"y":"Twitter","x": 10},
+      {"y":"YouTube","x": 20}
+
+    ]
+  },
+  
+  {
+    "name":"California",
+    "data":[
+       {"y":"Facebook","x": 35},
+       {"y":"Instagram","x": 60},
+       {"y":"Twitter","x": 80},
+       {"y":"YouTube","x": 35}
+    ]
+  }
+  ,
+  
+  {
+    "name":"Texas",
+    "data":[
+        {"y":"Facebook","x": 30},
+        {"y":"Instagram","x": 10},
+        {"y":"Twitter","x": 20},
+        {"y":"YouTube","x": 40}
+    ]
+  }
+  ,
+  
+  {
+    "name":"Georgia",
+    "data":[
+        {"y":"Facebook","x": 10},
+        {"y":"Instagram","x": 10},
+        {"y":"Twitter","x": 30},
+        {"y":"YouTube","x": 50}
+    ]
+  }
+
+]

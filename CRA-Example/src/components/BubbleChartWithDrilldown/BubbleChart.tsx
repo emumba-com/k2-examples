@@ -3,18 +3,20 @@ import { getURL } from "../../constants";
 
 import { BubbleChart, SankeyChart } from "@k2/d3-viz";
 import { ModalWrapper, ChartWrapper } from "./BubbleChart.style";
+import { applyQueryParams } from "../../utils";
 
 type ChartProps = {
   tooltipProps: any;
   onClick: (event: { data: any }) => void;
+  region?: string;
 };
 
-const Chart = ({ tooltipProps, onClick }: ChartProps) => {
+const Chart = ({ tooltipProps, onClick, region }: ChartProps) => {
   return (
     <ChartWrapper style={{ width: "100%", height: "100%" }}>
       <BubbleChart
-        title="Top Revenue By Region"
-        url={getURL("top-revenue")}
+        title={region ? `${region} Top Revenue` : "Top Revenue By Region"}
+        url={getURL(applyQueryParams("top-revenue", { region }))}
         legends={false}
         label={({ data, radius }) => (
           <label
@@ -41,9 +43,10 @@ const Chart = ({ tooltipProps, onClick }: ChartProps) => {
 };
 type DrilldownProps = {
   tooltipProps: any;
+  region?: string;
   onBackClick: () => void;
 };
-const Drilldown = ({ tooltipProps, onBackClick }: DrilldownProps) => {
+const Drilldown = ({ tooltipProps, region, onBackClick }: DrilldownProps) => {
   const [height, setHeight] = useState("");
   useEffect(() => {
     setTimeout(() => setHeight("65vh"), 500);
@@ -51,7 +54,7 @@ const Drilldown = ({ tooltipProps, onBackClick }: DrilldownProps) => {
   return (
     <ModalWrapper
       visible
-      title="Product Sales By Region"
+      title={region ? `${region} Product Sales` : "Product Sales By Region"}
       destroyOnClose
       onCancel={onBackClick}
       footer={null}
@@ -72,7 +75,7 @@ const Drilldown = ({ tooltipProps, onBackClick }: DrilldownProps) => {
         className="modal-chart-wrapper"
       >
         <SankeyChart
-          url={getURL("product-sales")}
+          url={getURL(applyQueryParams("product-sales", { region }))}
           nodeProps={{
             width: 10,
             shape: "rect",
@@ -88,8 +91,9 @@ const Drilldown = ({ tooltipProps, onBackClick }: DrilldownProps) => {
 };
 type Props = {
   tooltipProps: any;
+  region?: string;
 };
-const BubbleChartWithDrilldown = ({ tooltipProps }: Props) => {
+const BubbleChartWithDrilldown = ({ tooltipProps, region }: Props) => {
   const [drilldown, setDrilldown] = useState(undefined);
   return (
     <>
@@ -98,11 +102,13 @@ const BubbleChartWithDrilldown = ({ tooltipProps }: Props) => {
         onClick={({ data }) => {
           setDrilldown(data);
         }}
+        region={region}
       />
       {drilldown && (
         <Drilldown
           tooltipProps={tooltipProps}
           onBackClick={() => setDrilldown(undefined)}
+          region={region}
         />
       )}
     </>
