@@ -17,7 +17,7 @@ const RegionRevenueTiles: React.SFC<RegionRevenueTilesProps> = ({
     <RegionRevenueTilesDivStyled>
       <Row>
         {data.map((d, i) => (
-          <Col className='cell' xs={{ span: 24 }} md={{ span: 12}}>
+          <Col className="cell" xs={{ span: 24 }} md={{ span: 12 }}>
             <ColoredTile
               title={d.label}
               value={d.value}

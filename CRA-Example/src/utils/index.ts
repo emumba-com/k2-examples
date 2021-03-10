@@ -97,7 +97,6 @@ export const applyQueryParams = (
  * @param opacity
  */
 export function convertHexToRGBA(hexCode: string, opacity: number) {
-  console.log('hexCode :>> ', hexCode);
   let hex = hexCode.replace("#", "");
 
   if (hex.length === 3) {
