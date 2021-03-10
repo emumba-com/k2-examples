@@ -19,26 +19,30 @@ type PieChartFilterProps = {
   region?: string;
   onPieChartClick: (data: { data: any }) => void;
 };
+const totalRevenue = 900000;
 const PieChartFilter = ({
   tooltipProps,
   region,
   onBackClick,
   onPieChartClick: onClick,
 }: PieChartFilterProps) => {
-  let totalRevenue=900000;
-  let regionRevenue=0;
+  const [revenue, setRevenue] = React.useState(totalRevenue);
   const ref = React.useRef(null);
-  let regionsData=null;
-  if (ref.current) {
-    regionsData = ref.current.data;
-  }
-  if(region&&regionsData){
-    const selectedRegion=regionsData.find(r=>r.label===region);
-    if(selectedRegion){
-      const regionPercentage=selectedRegion.value||1;
-      regionRevenue=(totalRevenue * (regionPercentage / 100))
+  React.useEffect(() => {
+    let regionsData = null;
+    if (ref.current) {
+      regionsData = ref.current.data;
     }
-  }
+    if (regionsData&&regionsData.length) {
+      const selectedRegion = regionsData.find(r => r.label === region);
+      if (selectedRegion) {
+        const regionPercentage = selectedRegion.value || 1;
+        setRevenue(totalRevenue * (regionPercentage / 100));
+      } else {
+        setRevenue(totalRevenue)
+      }
+    }
+  }, [region]);
   return (
     <PieChartFilteredDivStyled>
       <Card>
@@ -70,7 +74,9 @@ const PieChartFilter = ({
                   light: ["#e89e5d", "#30b1d9", "#b177bb", "#5579ae"],
                 }}
                 legends={false}
-                centerLabel={() => <PieCenterLabel value={regionRevenue||totalRevenue}  />}
+                centerLabel={() => (
+                  <PieCenterLabel value={revenue} />
+                )}
                 label={({ data: { label, value } }) => (
                   <label style={{ fontSize: "13px", color: "#777777" }}>
                     {label}:<strong>{` ${value}%`}</strong>
