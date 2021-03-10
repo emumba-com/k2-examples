@@ -34,6 +34,7 @@ import { withTheme } from "styled-components";
 import BubbleChartWithDrilldown from "../BubbleChartWithDrilldown/BubbleChart";
 import { Select } from "antd";
 import PieChartFilter from "../PieChartFilter";
+import TitleWithInfo from "../TitleWithInfo";
 
 import SynchronizedCharts from "../SynchronizedCharts";
 
@@ -236,7 +237,12 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
           <Card key="9">
             <PieChart
               url="https://countries-274616.ew.r.appspot.com/"
-              title="Region's Population (via GraphQL)"
+              title={
+                <TitleWithInfo
+                  title="Region's Population (via GraphQL)"
+                  infoText="Data for this chart is being fetched from a GraphQL server for demonstration purposes."
+                />
+              }
               graphQLOptions={{
                 query: `
                     query {
