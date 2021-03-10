@@ -302,6 +302,48 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             />
           </Card>
 
+          <Card key="14">
+            <ColumnChart
+              url={getURL("brand-engagement-grouped")}
+              title="Brand Engagement"
+              barWidth={0.15}
+              xyPlot={{
+                yDomain: [0, 20000],
+                margin: { top: 30, bottom: 30 },
+              }}
+              xAxis={{
+                tickSizeOuter: 6,
+                tickSizeInner: 0,
+                style: {
+                  strokeWidth: 0.5,
+                },
+              }}
+              horizontalGridLines={{
+                height: 10,
+                tickValues: [0, 10000, 20000],
+                innerHeight: 0.5,
+                style: {
+                  strokeWidth: 0.5,
+                },
+              }}
+              verticalGridLines={false}
+              yAxis={{
+                hideLine: true,
+                tickTotal: 3,
+                tickSizeOuter: 6,
+                tickSizeInner: 0,
+                tickValues: [0, 10000, 20000],
+                tickFormat: (value: number) => {
+                  return `${value / 1000}K`;
+                },
+              }}
+              colors={{
+                dark: ["#5579ae", "#30b1d9"],
+                light: ["#5579ae", "#30b1d9"],
+              }}
+              tooltip={tooltipProps}
+            />
+          </Card>
           <Card key="10">
             <BarChart
               url={getURL(applyQueryParams("brand-engagement", { region }))}
@@ -336,9 +378,6 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             />
           </Card>
 
-          <Card key="11">
-            <SynchronizedCharts />
-          </Card>
           <Card key="13">
             <AreaChart
               url={getURL(applyQueryParams("sales-overview", { period }))}
@@ -419,47 +458,8 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             />
           </Card>
 
-          <Card key="14">
-            <ColumnChart
-              url={getURL("brand-engagement-grouped")}
-              title="Brand Engagement"
-              barWidth={0.15}
-              xyPlot={{
-                yDomain: [0, 20000],
-                margin: { top: 30, bottom: 30 },
-              }}
-              xAxis={{
-                tickSizeOuter: 6,
-                tickSizeInner: 0,
-                style: {
-                  strokeWidth: 0.5,
-                },
-              }}
-              horizontalGridLines={{
-                height: 10,
-                tickValues: [0, 10000, 20000],
-                innerHeight: 0.5,
-                style: {
-                  strokeWidth: 0.5,
-                },
-              }}
-              verticalGridLines={false}
-              yAxis={{
-                hideLine: true,
-                tickTotal: 3,
-                tickSizeOuter: 6,
-                tickSizeInner: 0,
-                tickValues: [0, 10000, 20000],
-                tickFormat: (value: number) => {
-                  return `${value / 1000}K`;
-                },
-              }}
-              colors={{
-                dark: ["#5579ae", "#30b1d9"],
-                light: ["#5579ae", "#30b1d9"],
-              }}
-              tooltip={tooltipProps}
-            />
+          <Card key="11">
+            <SynchronizedCharts />
           </Card>
           <Card key="15">
             <HighChartTrendLine />
