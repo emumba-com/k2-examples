@@ -48,7 +48,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
   return (
     <>
       <Header onSelectChange={setPeriod} />
-      <DashboardStyled className="has-theme-provider">
+      <DashboardStyled className="has-theme-provider" id="dashboard">
         <BaseStyle />
 
         <Tiles />

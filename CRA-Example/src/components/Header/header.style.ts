@@ -39,6 +39,19 @@ export const HeaderStyled = styled.header`
       color: #d0e3e8;
     }
   }
+  .export-container {
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    color: #d0e3e8;
+    .ant-btn {
+      background: transparent;
+      border: none;
+      color: #d0e3e8;
+      margin-top: 2px;
+    }
+  }
   .toggle {
     justify-content: center;
     height: 100%;
