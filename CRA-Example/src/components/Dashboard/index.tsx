@@ -32,7 +32,6 @@ import { DashboardStyled, CardDividerDivStyled } from "./dashboard.style";
 import BarChartWithDrilldown from "../BarChartWithDrilldown";
 import { withTheme } from "styled-components";
 import BubbleChartWithDrilldown from "../BubbleChartWithDrilldown/BubbleChart";
-import { Select } from "antd";
 import PieChartFilter from "../PieChartFilter";
 import TitleWithInfo from "../TitleWithInfo";
 

@@ -1,6 +1,4 @@
 import React from "react";
-import { fetchPageData } from "@k2/utils";
-import { LoadingAnimation } from "@k2/ui";
 import { ColorTileStyled } from "./coloredTile.style";
 import { convertHexToRGBA } from "../../utils";
 
