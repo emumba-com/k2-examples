@@ -7,7 +7,11 @@ import { applyQueryParams } from "../../utils";
 import BackButton from "../BackButton/BackButton";
 import { PieCenterLabel } from "../PieCenterLabel";
 import RegionRevenueTiles from "../RegionRevenueTiles";
-import { PieChartDrilldownWrapperStyled, PieChartFilteredDivStyled } from "./pieChartFilter.style";
+import TitleWithInfo from "../TitleWithInfo";
+import {
+  PieChartDrilldownWrapperStyled,
+  PieChartFilteredDivStyled,
+} from "./pieChartFilter.style";
 
 type ChartProps = {
   onBackClick: () => void;
@@ -36,7 +40,12 @@ const PieChartFilter = ({
               <PieChart
                 url={getURL(applyQueryParams("top-regions", { region }))}
                 title={
-                  region ? `${region} Top Revenue` : "Top Revenue By Region"
+                  <TitleWithInfo
+                    title={
+                      region ? `${region} Top Revenue` : "Top Revenue By Region"
+                    }
+                    infoText="Click on a slice to set the region filter to the Dashboard"
+                  />
                 }
                 classes={{
                   xyplot: "pieXYPlot",
