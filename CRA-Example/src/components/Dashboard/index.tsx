@@ -31,18 +31,13 @@ import {
 import {
   DashboardStyled,
   CardDividerDivStyled,
-  FilterContainerDivStyled,
-  ChartFilterDivStyled,
 } from "./dashboard.style";
 import BarChartWithDrilldown from "../BarChartWithDrilldown";
 import { withTheme } from "styled-components";
 import BubbleChartWithDrilldown from "../BubbleChartWithDrilldown/BubbleChart";
-import { Col, Row, Select } from "antd";
-import BackButton from "../BackButton/BackButton";
-import { DrilldownWrapper } from "../BarChartWithDrilldown/BarChart.style";
+import { Select } from "antd";
 import PieChartFilter from "../PieChartFilter";
-import RegionRevenueTiles from "../RegionRevenueTiles";
-const { Option } = Select;
+
 
 const Dashboard: React.SFC<any> = ({ theme }) => {
   const { mode } = theme;
@@ -53,23 +48,10 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
   };
   return (
     <>
-      <Header />
+      <Header onSelectChange={setPeriod}/>
       <DashboardStyled className="has-theme-provider">
         <BaseStyle />
-        <FilterContainerDivStyled>
-          <span className="filter-title">
-            Filter
-          </span>
-          <Select
-            defaultValue={1}
-            style={{ width: 140 }}
-            onChange={value => setPeriod(value)}
-          >
-            <Option value={1}>Last Year</Option>
-            <Option value={5}>Last 5 Years</Option>
-            <Option value={10}>Last 10 Years</Option>
-          </Select>
-        </FilterContainerDivStyled>
+        
         <Tiles />
         <PieChartFilter
           tooltipProps={tooltipProps}

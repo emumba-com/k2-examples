@@ -11,27 +11,42 @@ export const HeaderStyled = styled.header`
   width: 100%;
   position: fixed;
   .header-content-wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    padding: 12.5px;
-    margin: 0 auto;
-    max-width: 1600px;
     height: 100%;
   }
   .heading {
-    grid-area: 1 / 2 / 2 /6;
-    align-self: center;
-    justify-self: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #d0e3e8;
     > span > a {
       color: #d0e3e8;
       text-decoration: underline;
     }
   }
+  .select-container {
+    justify-content: flex-end;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    .ant-select-selection {
+      background: transparent;
+      border: none;
+      color: #d0e3e8;
+      margin-top: 2px;
+    }
+    .ant-select-arrow {
+      color: #d0e3e8;
+    }
+  }
   .toggle {
-    grid-area: 1 / 6 / 2 /7;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    display: flex;
     color: #d0e3e8;
-    align-self: center;
-    justify-self: end;
+  }
+  .calendar-icon {
+    color: #d0e3e8;
   }
 `;

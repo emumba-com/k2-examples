@@ -90,18 +90,29 @@ const CustomAreaChart = (props: Props) => {
       }
     >
       <CustomDrawer open={open} onClose={() => OpenDrawer(false)}>
-        <CustomSelect
-          placeholder={"Select Region"}
-          mode="multiple"
-          list={["Europe", "America", "Africa"]}
-          handleChange={handleRegionFilter}
-        />
-        <CustomSelect
-          placeholder={"Select Quarter"}
-          mode="default"
-          list={["1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter"]}
-          handleChange={handleQuarterFilter}
-        />
+        {period > 1 || region ? (
+          <div className="filter-not-applicable">Filter not application with selected Dashboard filters</div>
+        ) : (
+          <>
+            <CustomSelect
+              placeholder={"Select Region"}
+              mode="multiple"
+              list={["Europe", "America", "Africa"]}
+              handleChange={handleRegionFilter}
+            />
+            <CustomSelect
+              placeholder={"Select Quarter"}
+              mode="default"
+              list={[
+                "1st Quarter",
+                "2nd Quarter",
+                "3rd Quarter",
+                "4th Quarter",
+              ]}
+              handleChange={handleQuarterFilter}
+            />
+          </>
+        )}
       </CustomDrawer>
       <AreaChart
         url={getURL(apiUrlString)}

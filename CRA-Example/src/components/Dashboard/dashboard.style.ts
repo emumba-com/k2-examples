@@ -51,17 +51,3 @@ export const ChartFilterDivStyled = styled.div`
     flex-basis: 50%;
   }
 `;
-
-export const FilterContainerDivStyled = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10px;
-  height: 50px;
-  background-color: #f6f6f6;
-  .filter-title {
-    color: #6e79ff;
-    font-weight: bolder;
-    font-size: 16px;
-  }
-`;

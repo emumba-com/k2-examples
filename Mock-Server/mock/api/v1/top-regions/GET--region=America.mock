@@ -5,7 +5,7 @@ Access-Control-Allow-Origin: *
 
 [
   {"label":"Virginia","value":30},
-  {"label":"Texas","value":45},
-  {"label":"Dallas","value":10},
-  {"label":"California","value":10}
+  {"label":"California","value":45},
+  {"label":"Texas","value":10},
+  {"label":"Georgia","value":10}
 ]
