@@ -1,11 +1,12 @@
 import React from "react";
-import { Icon } from "antd";
-import { Button } from "@k2/ui";
+import { Col, Icon, Row, Select, Button } from "antd";
+import html2Canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 import { HeaderStyled } from "./header.style";
 import { ToggleButton } from "../ThemeToggleButton/ThemeToggleButton";
-import html2Canvas from "html2canvas";
-import jsPDF from "jspdf";
+
+const { Option } = Select;
 
 const generatePDF = () => {
   html2Canvas(document.querySelector("#dashboard")).then(canvas => {
@@ -34,11 +35,11 @@ const generatePDF = () => {
   });
 };
 
-export default function Header() {
+export default function Header({ onSelectChange }) {
   return (
     <HeaderStyled>
-      <div className="header-content-wrapper">
-        <div className="heading">
+      <Row className="header-content-wrapper">
+        <Col span={9} className="heading" offset={7}>
           <span>
             This Dashboard is created using K2. View the source code on{" "}
             <Icon className="action-icon" type="github" theme="filled" />{" "}
@@ -50,12 +51,29 @@ export default function Header() {
               GitHub
             </a>
           </span>
-        </div>
-        <div className="toggle">
-          <button onClick={generatePDF}>Generate PDF</button>
+        </Col>
+        <Col className="select-container" offset={1} span={2}>
+          <Icon className="calendar-icon" type="calendar" theme="filled" />
+          <Select
+            defaultValue={1}
+            size="small"
+            style={{ width: 120 }}
+            onChange={value => onSelectChange(value)}
+          >
+            <Option value={1}>Last Year</Option>
+            <Option value={5}>Last 5 Years</Option>
+            <Option value={10}>Last 10 Years</Option>
+          </Select>
+        </Col>
+        <Col span={2} className="export-container">
+          <Button icon="download" size="small" ghost onClick={generatePDF}>
+            Export
+          </Button>
+        </Col>
+        <Col className="toggle" span={3}>
           <ToggleButton />
-        </div>
-      </div>
+        </Col>
+      </Row>
     </HeaderStyled>
   );
 }

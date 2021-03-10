@@ -73,3 +73,40 @@ export function getFormattedDate(date: Date) {
  */
 export const getQuarter = time =>
   Math.floor((new Date(time).getMonth() + 3) / 3);
+
+/**
+ * Set Query params in string give base url and query params object
+ * @param base
+ * @param params
+ */
+export const applyQueryParams = (
+  base: string,
+  params: { [key: string]: string | number | boolean },
+) => {
+  return Object.entries(params)
+    .filter(v => v[1])
+    .reduce((prev: string, curr, index: number) => {
+      prev = `${prev}${index === 0 ? "?" : "&"}${curr[0]}=${curr[1]}`;
+      return prev;
+    }, base);
+};
+
+/**
+ * convert hex color to rgba with given opacity
+ * @param hexCode
+ * @param opacity
+ */
+export function convertHexToRGBA(hexCode: string, opacity: number) {
+  console.log('hexCode :>> ', hexCode);
+  let hex = hexCode.replace("#", "");
+
+  if (hex.length === 3) {
+    hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+  }
+
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+
+  return `rgba(${r},${g},${b},${opacity})`;
+}

@@ -4,6 +4,8 @@ import { getURL } from "../../constants";
 import { BubbleChart } from "@k2/d3-viz";
 import { DrilldownWrapper } from "./BarChart.style";
 import BackButton from "../BackButton/BackButton";
+import { applyQueryParams } from "../../utils";
+import TitleWithInfo from "../TitleWithInfo";
 
 type ChartProps = {
   onClick: (event: any) => void;
@@ -14,7 +16,12 @@ const Chart = ({ onClick, tooltipProps }: ChartProps) => {
     <DrilldownWrapper>
       <BarChart
         url={getURL("best-sellers")}
-        title="Top 4 Best Sellers"
+        title={
+          <TitleWithInfo
+            title="Top 4 Best Sellers"
+            infoText="Click on a Bar to see region-wise sales"
+          />
+        }
         barWidth={0.5}
         legends={false}
         verticalGridLines={false}
@@ -51,17 +58,29 @@ const Chart = ({ onClick, tooltipProps }: ChartProps) => {
 };
 type DrilldownProps = {
   data: { y: string };
+  region?: string;
   onBackClick: () => void;
   tooltipProps: any;
   onClick: (data: { data: any }) => void;
 };
-const Drilldown = ({ onBackClick, tooltipProps, onClick }: DrilldownProps) => {
+const Drilldown = ({
+  onBackClick,
+  tooltipProps,
+  onClick,
+  region,
+}: DrilldownProps) => {
+  console.log("region :>> ", region);
   return (
     <DrilldownWrapper>
       <BackButton onClick={onBackClick} label="Top 4 Best Sellers" />
       <BubbleChart
-        title="Revenue By Region"
-        url={getURL("revenue")}
+        title={
+          <TitleWithInfo
+            title={region ? `${region} Revenue` : "Revenue By Region"}
+            infoText="Click on a Bubble to drilldown region's revenue"
+          />
+        }
+        url={getURL(applyQueryParams("revenue", { region }))}
         legends={false}
         label={({ data, radius }) => (
           <label
@@ -134,8 +153,9 @@ const SecondDrilldown = ({
 };
 type Props = {
   tooltipProps: any;
+  region?: string;
 };
-const ChartWithDrilldown = ({ tooltipProps }: Props) => {
+const ChartWithDrilldown = ({ tooltipProps, region }: Props) => {
   const [drilldown, setDrilldown] = useState<any>(0);
   const [data, setData] = useState<any>();
   return (
@@ -143,6 +163,7 @@ const ChartWithDrilldown = ({ tooltipProps }: Props) => {
       {drilldown === 1 && (
         <Drilldown
           data={data}
+          region={region}
           onBackClick={() => setDrilldown(0)}
           tooltipProps={tooltipProps}
           onClick={({ data }: any) => {

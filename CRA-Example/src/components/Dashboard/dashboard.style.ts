@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const DashboardStyled = styled.main`
   margin: 0 auto;
   margin-top: 50px;
-  padding-top: 6px;
   .rv-xy-plot__axis__tick__text {
     font-size: 12px;
   }
@@ -38,5 +37,17 @@ export const CardDividerDivStyled = styled.div`
   }
   .section-2 {
     padding-top: 15px;
+  }
+`;
+
+export const ChartFilterDivStyled = styled.div`
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  .section-1 {
+    flex-basis: 50%;
+  }
+  .section-2 {
+    flex-basis: 50%;
   }
 `;

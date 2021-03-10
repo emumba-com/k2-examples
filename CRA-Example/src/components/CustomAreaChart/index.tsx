@@ -7,8 +7,14 @@ import {
   monthTickValues,
   shortMonthNames,
   quarters,
+  yearTickValues,
 } from "../../constants";
-import { kFormatter, getMonthYearFromDate, getQuarter } from "../../utils";
+import {
+  kFormatter,
+  getMonthYearFromDate,
+  getQuarter,
+  applyQueryParams,
+} from "../../utils";
 import CustomDrawer from "./subComponents/CustomDrawer";
 import CustomSelect from "./subComponents/CustomSelect";
 import { CardStyled } from "./customAreaChart.style";
@@ -32,17 +38,23 @@ type Props = {
   width?: string | number;
   height?: string | number;
   key?: string;
+  period?: number;
+  region?: string;
 };
+
+const getBaseUrl = "sales-overview-multi";
+
 const CustomAreaChart = (props: Props) => {
   const [open, OpenDrawer] = React.useState(false);
   const [selectedRegion, setRegion] = React.useState([]);
   const [selectedQuarter, setQuarter] = React.useState(undefined);
+  const { period = 1, region } = props;
+  const apiUrlString = applyQueryParams(getBaseUrl, { region, period });
   const ref = React.useRef(null);
   const hasFilters =
     ref.current && ref.current.status !== "LOADING"
       ? ref.current.viewData !== ref.current.data
       : false;
-
   const handleRegionFilter = value => {
     if (ref.current) {
       const { data, setViewData } = ref.current;
@@ -78,25 +90,35 @@ const CustomAreaChart = (props: Props) => {
       }
     >
       <CustomDrawer open={open} onClose={() => OpenDrawer(false)}>
-        <CustomSelect
-          placeholder={"Select Region"}
-          mode="multiple"
-          list={["Europe", "America", "Africa"]}
-          handleChange={handleRegionFilter}
-        />
-        <CustomSelect
-          placeholder={"Select Quarter"}
-          mode="default"
-          list={["1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter"]}
-          handleChange={handleQuarterFilter}
-        />
+        {period > 1 || region ? (
+          <div className="filter-not-applicable">Filter not applicable with selected Dashboard filters</div>
+        ) : (
+          <>
+            <CustomSelect
+              placeholder={"Select Region"}
+              mode="multiple"
+              list={["Europe", "America", "Africa"]}
+              handleChange={handleRegionFilter}
+            />
+            <CustomSelect
+              placeholder={"Select Quarter"}
+              mode="default"
+              list={[
+                "1st Quarter",
+                "2nd Quarter",
+                "3rd Quarter",
+                "4th Quarter",
+              ]}
+              handleChange={handleQuarterFilter}
+            />
+          </>
+        )}
       </CustomDrawer>
       <AreaChart
-        url={getURL("sales-overview-multi")}
+        url={getURL(apiUrlString)}
         ref={ref}
         xyPlot={{
           stackBy: "y",
-          xType: "time",
           yDomain: [0, 20000],
           margin: { top: 20, bottom: 30 },
         }}
@@ -114,13 +136,15 @@ const CustomAreaChart = (props: Props) => {
           },
         }}
         xAxis={{
-          tickTotal: 12,
           tickSizeOuter: 6,
           tickSizeInner: 0,
-          tickValues: monthTickValues,
+          tickValues: period > 1 ? yearTickValues : monthTickValues,
           tickFormat: (time: number) => {
-            const monthNames = shortMonthNames;
+            if (period > 1) {
+              return time;
+            }
             const date = new Date(time);
+            const monthNames = shortMonthNames;
             return `${monthNames[date.getMonth()]}`;
           },
           style: { strokeWidth: 0.6, fontSize: "12px" },
@@ -132,7 +156,8 @@ const CustomAreaChart = (props: Props) => {
         classes={{ crosshair: "crosshair-root" }}
         crosshair={{
           yFormatter: val => kFormatter(val),
-          xFormatter: val => getMonthYearFromDate(new Date(val)),
+          xFormatter: val =>
+            period > 1 ? val.toString() : getMonthYearFromDate(new Date(val)),
         }}
       />
     </CardStyled>
