@@ -69,7 +69,6 @@ const Drilldown = ({
   onClick,
   region,
 }: DrilldownProps) => {
-  console.log("region :>> ", region);
   return (
     <DrilldownWrapper>
       <BackButton onClick={onBackClick} label="Top 4 Best Sellers" />

@@ -13,12 +13,11 @@ const colors = ["#e89e5d", "#30b1d9", "#b177bb", "#5579ae"];
 const RegionRevenueTiles: React.SFC<RegionRevenueTilesProps> = ({
   data = [],
 }) => {
-  console.log("props :>> ", data);
   return (
     <RegionRevenueTilesDivStyled>
       <Row>
         {data.map((d, i) => (
-          <Col className='cell' xs={{ span: 24 }} md={{ span: 12}}>
+          <Col className="cell" xs={{ span: 24 }} md={{ span: 12 }}>
             <ColoredTile
               title={d.label}
               value={d.value}
