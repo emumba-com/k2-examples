@@ -36,6 +36,7 @@ import PieChartFilter from "../PieChartFilter";
 import TitleWithInfo from "../TitleWithInfo";
 
 import SynchronizedCharts from "../SynchronizedCharts";
+import HighChartTrendLine from "../HighChartTrendLine";
 
 const Dashboard: React.SFC<any> = ({ theme }) => {
   const { mode } = theme;
@@ -459,6 +460,9 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
               }}
               tooltip={tooltipProps}
             />
+          </Card>
+          <Card key="15">
+            <HighChartTrendLine />
           </Card>
         </GridLayout>
       </DashboardStyled>
