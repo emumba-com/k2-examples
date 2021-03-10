@@ -24,7 +24,7 @@ function syncCrosshairs(e) {
   }
 }
 
-Highcharts.setOptions({
+const basicConfigs = {
   chart: {
     marginLeft: 60,
     marginRight: 40,
@@ -64,9 +64,11 @@ Highcharts.setOptions({
   exporting: {
     enabled: false,
   },
-});
+};
 
-const chartOptions: any = {
+const chartOptions = {
+  marginLeft: 60,
+  marginRight: 40,
   renderTo: "comparisonCharts",
   type: "areaspline",
   height: 120,
@@ -81,6 +83,7 @@ const chartOptions: any = {
 };
 
 const options1: any = {
+  ...basicConfigs,
   chart: {
     ...chartOptions,
   },
@@ -113,6 +116,7 @@ const options1: any = {
   ],
 };
 const options2: any = {
+  ...basicConfigs,
   chart: {
     ...chartOptions,
   },
