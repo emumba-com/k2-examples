@@ -68,9 +68,16 @@ Highcharts.setOptions({
 
 const chartOptions: any = {
   renderTo: "comparisonCharts",
-  type: "line",
+  type: "areaspline",
   height: 120,
   inverted: false,
+  plotOptions: {
+    area: {
+      marker: {
+        enabled: false,
+      },
+    },
+  },
 };
 
 const options1: any = {
@@ -97,8 +104,11 @@ const options1: any = {
       color: "#b177bb",
       unit: "$",
       fillOpacity: 0.3,
-      type: "area",
+      type: "areaspline",
       valueDecimals: 1,
+      marker: {
+        enabled: false,
+      },
     },
   ],
 };
@@ -126,8 +136,11 @@ const options2: any = {
       unit: "$",
       color: "#5579ae",
       fillOpacity: 0.3,
-      type: "area",
+      type: "areaspline",
       valueDecimals: 1,
+      marker: {
+        enabled: false,
+      },
     },
   ],
 };
