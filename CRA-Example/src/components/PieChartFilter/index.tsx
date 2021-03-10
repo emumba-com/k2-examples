@@ -1,7 +1,7 @@
 import { PieChart } from "@k2/rv-viz";
 import { Card } from "@k2/ui";
 import { Col, Row } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import { getURL } from "../../constants";
 import { applyQueryParams } from "../../utils";
 import BackButton from "../BackButton/BackButton";
