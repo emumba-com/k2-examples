@@ -6,22 +6,12 @@ import HighchartsBullet from "highcharts/modules/bullet";
 import ContentHeader from "../ContentHeader";
 import { ThemeContext } from "styled-components";
 HighchartsBullet(Highcharts);
-Highcharts.setOptions({
-  chart: {
-    inverted: true,
-    marginLeft: 80,
-    marginRight: 50,
-    type: "bullet",
-    backgroundColor: "red",
-  },
+const commonOptions = {
   title: {
     text: null,
   },
   legend: {
     enabled: false,
-  },
-  yAxis: {
-    gridLineWidth: 0,
   },
   plotOptions: {
     bullet: {
@@ -39,7 +29,14 @@ Highcharts.setOptions({
   exporting: {
     enabled: false,
   },
-});
+};
+const chartConfig = {
+  inverted: true,
+  marginLeft: 80,
+  marginRight: 50,
+  type: "bullet",
+  backgroundColor: "red",
+};
 const xAxisLabelStyle = {
   color: "#888888",
   fontFamily: "OpenSans-Regular",
@@ -50,7 +47,9 @@ const yAxisLabelStyle = {
   fontSize: "12px",
 };
 const options1: any = {
+  ...commonOptions,
   chart: {
+    ...chartConfig,
     marginTop: 20,
     height: "80px",
   },
@@ -73,6 +72,7 @@ const options1: any = {
     labels: {
       style: yAxisLabelStyle,
     },
+    gridLineWidth: 0,
   },
   series: [
     {
@@ -89,7 +89,8 @@ const options1: any = {
   },
 };
 const options2 = {
-  chart: { height: "70px" },
+  ...commonOptions,
+  chart: { ...chartConfig, height: "70px" },
   xAxis: {
     categories: ["Profit"],
     labels: {
@@ -109,6 +110,7 @@ const options2 = {
       style: yAxisLabelStyle,
     },
     title: null,
+    gridLineWidth: 0,
   },
   series: [
     {
@@ -125,7 +127,8 @@ const options2 = {
   },
 };
 const options3 = {
-  chart: { height: "70px" },
+  ...commonOptions,
+  chart: { ...chartConfig, height: "70px" },
   xAxis: {
     categories: ["Customers"],
     labels: {
@@ -145,6 +148,7 @@ const options3 = {
       style: yAxisLabelStyle,
     },
     title: null,
+    gridLineWidth: 0,
   },
   series: [
     {
