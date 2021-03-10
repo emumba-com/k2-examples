@@ -91,7 +91,7 @@ const CustomAreaChart = (props: Props) => {
     >
       <CustomDrawer open={open} onClose={() => OpenDrawer(false)}>
         {period > 1 || region ? (
-          <div className="filter-not-applicable">Filter not application with selected Dashboard filters</div>
+          <div className="filter-not-applicable">Filter not applicable with selected Dashboard filters</div>
         ) : (
           <>
             <CustomSelect
