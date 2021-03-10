@@ -32,7 +32,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
   return (
     <>
       <Header />
-      <DashboardStyled className="has-theme-provider">
+      <DashboardStyled className="has-theme-provider" id="dashboard">
         <BaseStyle />
         <Tiles />
         <GridLayout
