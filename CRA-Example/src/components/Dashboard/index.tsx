@@ -461,9 +461,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
           <Card key="11">
             <SynchronizedCharts />
           </Card>
-          <Card key="15">
-            <HighChartTrendLine />
-          </Card>
+          <HighChartTrendLine key="15" />
         </GridLayout>
       </DashboardStyled>
     </>
