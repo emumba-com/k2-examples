@@ -25,6 +25,17 @@ export const BaseStyle = createGlobalStyle<{ theme: ThemeParameterProps }>`
            theme.backgroundColors.card} !important ;
       }
     }
+     .ant-dropdown-menu{
+      background-color:${({ theme }) => theme.backgroundColors.card};
+    }
+    .ant-dropdown-menu-item{
+      color: ${({ theme }) => theme.textColors.normal};
+
+    }
+    .ant-dropdown-menu-item:hover{
+      background-color: #efefef;
+
+    }
    .ant-select-dropdown.ant-select-dropdown--multiple .ant-select-dropdown-menu-item:hover .ant-select-selected-icon{
       color: ${({ theme }) => theme.textColors.normal} ;
     }

@@ -18,4 +18,13 @@ export const CardStyled = styled(Card)`
   .card-body {
     padding-top: 0;
   }
+  .ant-btn-icon-only {
+    background: transparent;
+    color: gray;
+    border: 0;
+    color: ${(props)=>props.theme.textColors.info};
+  }
+  .ant-btn-icon-only:hover {
+    background: transparent;
+  }
 `;
