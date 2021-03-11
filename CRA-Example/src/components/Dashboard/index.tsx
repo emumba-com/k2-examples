@@ -64,8 +64,8 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
         />
         <GridLayout
           rowHeight={300}
-          noOfCols={{ xl: 5, lg: 3, md: 2, sm: 1 }}
-          breakpoints={{ xl: 1900, lg: 1200, md: 996, sm: 768 }}
+          noOfCols={{ lg: 3, md: 2, sm: 1 }}
+          breakpoints={{ lg: 1200, md: 996, sm: 768 }}
           style={{ position: "relative" }}
         >
           <CustomAreaChart period={period} region={region} key="1" />
