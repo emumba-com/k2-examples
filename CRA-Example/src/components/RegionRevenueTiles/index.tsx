@@ -1,5 +1,4 @@
-import { LoadingAnimation } from "@k2/ui";
-import { fetchPageData } from "@k2/utils";
+import { fetchPageData, LoadingIcon } from "@k2/utils";
 import { Col, Row } from "antd";
 import * as React from "react";
 import { kFormatter } from "../../utils";
@@ -22,7 +21,7 @@ const RegionRevenueTiles: React.SFC<RegionRevenueTilesProps> = ({
               title={d.label}
               value={d.value}
               className="cellWrapper"
-              count={kFormatter(900000 * (1 / d.value))}
+              count={kFormatter(900000 * (d.value/100))}
               color={colors[i]}
             />
           </Col>
@@ -42,11 +41,10 @@ export default fetchPageData({
   },
   paged: false,
   defaultComponentStates: {
-    blank: <div>loading</div>,
+    blank: <div></div>,
     loading: (
-      <LoadingAnimation>
-        {<div style={{ minHeight: "80px" }}>loading</div>}
-      </LoadingAnimation>
+      <LoadingIcon size={40}/>
+
     ),
   },
 })(RegionRevenueTiles);

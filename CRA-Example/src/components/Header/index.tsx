@@ -59,7 +59,7 @@ export default function Header({ onSelectChange }) {
           <Select
             defaultValue={1}
             size="small"
-            style={{ width: 100 }}
+            style={{ width: 110 }}
             onChange={value => onSelectChange(value)}
           >
             <Option value={1}>Last Year</Option>
