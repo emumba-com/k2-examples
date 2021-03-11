@@ -18,7 +18,7 @@ export const PieChartFilteredDivStyled = styled.div`
   
   .tiles-container {
     height: 300px;
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
       height: unset;
     }
   }

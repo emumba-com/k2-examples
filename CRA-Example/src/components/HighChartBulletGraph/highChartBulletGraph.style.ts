@@ -27,3 +27,8 @@ export const CardStyled = styled(Card)`
     padding-top: 0;
   }
 `;
+
+export const ParaStyled = styled("p")`
+  color: ${({ theme }) => theme.textColors.heading || "#fff"};
+  margin: 4px 2px;
+`;

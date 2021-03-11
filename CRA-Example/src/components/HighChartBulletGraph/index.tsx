@@ -3,9 +3,8 @@ import Highcharts from "highcharts/highcharts";
 import HighchartsReact from "highcharts-react-official";
 import HighchartsBullet from "highcharts/modules/bullet";
 
-import ContentHeader from "../ContentHeader";
 import { ThemeContext } from "styled-components";
-import { CardStyled } from "./highChartBulletGraph.style";
+import { CardStyled, ParaStyled } from "./highChartBulletGraph.style";
 import { Icon } from "antd";
 HighchartsBullet(Highcharts);
 const commonOptions = {
@@ -227,11 +226,11 @@ const HighChartBulletGraph: React.SFC = () => {
           />
         </>
       ) : (
-        <p>
+        <ParaStyled>
           This chart represents target achievements in terms of Revenue
           (surpassed the target), Profits (lagging behind), and Customers
           (lagging behind).
-        </p>
+        </ParaStyled>
       )}
     </CardStyled>
   );
