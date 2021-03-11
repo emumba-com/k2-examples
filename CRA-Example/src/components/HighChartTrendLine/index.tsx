@@ -6,7 +6,7 @@ import HighchartsExportData from "highcharts/modules/export-data";
 
 import { ThemeContext } from "styled-components";
 import { CardStyled } from "./highChartTrendLine.style";
-import { Menu, Dropdown, Button } from "antd";
+import { Menu, Dropdown, Icon } from "antd";
 
 HighchartsExport(Highcharts);
 HighchartsExportData(Highcharts);
@@ -50,7 +50,7 @@ const HighChartTrendLine: React.SFC = () => {
       title="Sales Overview"
       actions={
         <Dropdown overlay={menu}>
-          <Button size="small" icon="download" />
+          <Icon style={{ cursor: "pointer" }} type="download" />
         </Dropdown>
       }
     >
