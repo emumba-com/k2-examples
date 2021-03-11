@@ -33,7 +33,7 @@ export const BaseStyle = createGlobalStyle<{ theme: ThemeParameterProps }>`
 
     }
     .ant-dropdown-menu-item:hover{
-      background-color: #efefef;
+      background-color: ${({ theme }) => theme.backgroundColors.main};
 
     }
    .ant-select-dropdown.ant-select-dropdown--multiple .ant-select-dropdown-menu-item:hover .ant-select-selected-icon{
