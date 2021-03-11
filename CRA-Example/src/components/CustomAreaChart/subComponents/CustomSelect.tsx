@@ -14,7 +14,7 @@ const CustomSelect = ({ placeholder, mode, list = [], handleChange }) => {
       onChange={handleChange}
     >
       {list.map(item => (
-        <Option value={item} label={item}>
+        <Option key={`custom-select-${item}`} value={item} label={item}>
           {item}
         </Option>
       ))}

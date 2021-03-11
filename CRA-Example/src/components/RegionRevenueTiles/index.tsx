@@ -16,12 +16,17 @@ const RegionRevenueTiles: React.SFC<RegionRevenueTilesProps> = ({
     <RegionRevenueTilesDivStyled>
       <Row>
         {data.map((d, i) => (
-          <Col className="cell" xs={{ span: 24 }} md={{ span: 12 }}>
+          <Col
+            key={`region-revenue-${i}`}
+            className="cell"
+            xs={{ span: 24 }}
+            md={{ span: 12 }}
+          >
             <ColoredTile
               title={d.label}
               value={d.value}
               className="cellWrapper"
-              count={kFormatter(900000 * (d.value/100))}
+              count={kFormatter(900000 * (d.value / 100))}
               color={colors[i]}
             />
           </Col>
@@ -42,9 +47,6 @@ export default fetchPageData({
   paged: false,
   defaultComponentStates: {
     blank: <div></div>,
-    loading: (
-      <LoadingIcon size={40}/>
-
-    ),
+    loading: <LoadingIcon size={40} />,
   },
 })(RegionRevenueTiles);

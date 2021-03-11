@@ -2,7 +2,7 @@ import React from "react";
 import { ColumnChart } from "@k2/rv-viz";
 import { Icon } from "antd";
 
-import { CardStyled } from "./highChartTrendLine.style";
+import { CardStyled } from "./switchChartView.style";
 import { getURL } from "../../constants";
 import BrandEngagementTiles from "../BrandEngagementTiles";
 
@@ -27,7 +27,7 @@ const BrandEngagementSwitchView: React.SFC<SwitchViewChartProps> = ({
       title="Brand Engagement Overview"
       actions={<Icon type="swap" onClick={switchView} />}
     >
-      {viewSwitched && (
+      {!viewSwitched ? (
         <ColumnChart
           url={getURL("brand-engagement-single")}
           barWidth={0.15}
@@ -54,8 +54,7 @@ const BrandEngagementSwitchView: React.SFC<SwitchViewChartProps> = ({
           label={({ data }) => <div>{data.y}%</div>}
           tooltip={tooltipProps}
         />
-      )}
-      {!viewSwitched && (
+      ) : (
         <BrandEngagementTiles url={getURL("brand-engagement-overview")} />
       )}
     </CardStyled>
