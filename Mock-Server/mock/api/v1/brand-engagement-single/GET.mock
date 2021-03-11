@@ -6,17 +6,17 @@ Access-Control-Allow-Origin: *
 [{
 	"name": "Brand Engagement Overview",
 	"data": [{
-			"y": 30,
+			"y": 32,
 			"x": "Facebook",
       "labelColor":"#777777"
 		},
 		{
-			"y": 25,
+			"y": 24,
 			"x": "Instagram",
       "labelColor":"#777777"
 		},
 		{
-			"y": 28,
+			"y": 18,
 			"x": "Twitter",
       "labelColor":"#777777"
 		},

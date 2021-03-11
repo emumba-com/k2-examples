@@ -37,6 +37,7 @@ import TitleWithInfo from "../TitleWithInfo";
 
 import SynchronizedCharts from "../SynchronizedCharts";
 import HighChartTrendLine from "../HighChartTrendLine";
+import SwitchChartView from "../SwitchChartView";
 
 const Dashboard: React.SFC<any> = ({ theme }) => {
   const { mode } = theme;
@@ -83,35 +84,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             />
           </Card>
 
-          <Card key="4">
-            <ColumnChart
-              url={getURL("brand-engagement-single")}
-              title="Brand Engagement Overview"
-              barWidth={0.15}
-              xyPlot={{
-                margin: { left: 25, top: 30, bottom: 30 },
-                yDomain: [0, 35],
-                stackBy: "y",
-              }}
-              legends={false}
-              verticalGridLines={false}
-              horizontalGridLines={false}
-              xAxis={{
-                tickSizeOuter: 6,
-                tickSizeInner: 0,
-                style: {
-                  strokeWidth: 0.5,
-                },
-              }}
-              yAxis={false}
-              colors={{
-                dark: ["#7bb844", "#7bb844", "#7bb844", "#7bb844", "#7bb844"],
-                light: ["#7bb844", "#7bb844", "#7bb844", "#7bb844", "#7bb844"],
-              }}
-              label={({ data }) => <div>{data.y}%</div>}
-              tooltip={tooltipProps}
-            />
-          </Card>
+          <SwitchChartView key="4" tooltipProps={tooltipProps} />
 
           <Card key="5">
             <BarChart

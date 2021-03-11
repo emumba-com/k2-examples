@@ -43,6 +43,15 @@ export function kFormatter(num: number) {
 }
 
 /**
+ * Returns number as M formatted string e.g. 2500000 to 2.5M
+ * @param num
+ */
+export function milFormatter(num: number) {
+  if (num < 1e3) return num.toString();
+  if (num >= 1e3) return +(num / 1e6).toFixed(1) + "M";
+}
+
+/**
  * Returns date as year and month e.g. Jan 2020
  * @param date
  */
