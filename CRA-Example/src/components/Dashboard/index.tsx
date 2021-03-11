@@ -186,9 +186,7 @@ const Dashboard: React.SFC<any> = ({ theme }) => {
             </CardDividerDivStyled>
           </Card>
 
-          <Card key="7">
-            <HighChartBulletGraph />
-          </Card>
+          <HighChartBulletGraph key="7" />
 
           <Card key="8">
             <SankeyChart

@@ -5,6 +5,8 @@ import HighchartsBullet from "highcharts/modules/bullet";
 
 import ContentHeader from "../ContentHeader";
 import { ThemeContext } from "styled-components";
+import { CardStyled } from "./highChartBulletGraph.style";
+import { Icon } from "antd";
 HighchartsBullet(Highcharts);
 const commonOptions = {
   title: {
@@ -177,34 +179,61 @@ const getUpdatedOptions = (options, newOptions) => ({
 });
 
 const HighChartBulletGraph: React.SFC = () => {
+  const [explanationView, setExplanationView] = React.useState(false);
   React.useEffect(() => {
     window.dispatchEvent(new Event("resize"));
   });
   const {
     backgroundColors: { card: cardBackgroundColor },
   } = React.useContext(ThemeContext);
+  const toggleExplanationView = () => {
+    setExplanationView(!explanationView);
+  };
   return (
-    <>
-      <ContentHeader>Target Achievement (Visual from HighCharts)</ContentHeader>
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={getUpdatedOptions(options1, {
-          backgroundColor: cardBackgroundColor,
-        })}
-      />
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={getUpdatedOptions(options2, {
-          backgroundColor: cardBackgroundColor,
-        })}
-      />
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={getUpdatedOptions(options3, {
-          backgroundColor: cardBackgroundColor,
-        })}
-      />
-    </>
+    <CardStyled
+      classes={{
+        title: "card-title",
+        actions: "card-actions",
+        body: "card-body",
+      }}
+      title="Target Achievement (Visual from HighCharts)"
+      actions={
+        <Icon
+          className="explanation-icon"
+          type={explanationView ? "arrow-left" : "question"}
+          onClick={toggleExplanationView}
+        />
+      }
+    >
+      {!explanationView ? (
+        <>
+          <HighchartsReact
+            highcharts={Highcharts}
+            options={getUpdatedOptions(options1, {
+              backgroundColor: cardBackgroundColor,
+            })}
+          />
+          <HighchartsReact
+            highcharts={Highcharts}
+            options={getUpdatedOptions(options2, {
+              backgroundColor: cardBackgroundColor,
+            })}
+          />
+          <HighchartsReact
+            highcharts={Highcharts}
+            options={getUpdatedOptions(options3, {
+              backgroundColor: cardBackgroundColor,
+            })}
+          />
+        </>
+      ) : (
+        <p>
+          This chart represents target achievements in terms of Revenue
+          (surpassed the target), Profits (lagging behind), and Customers
+          (lagging behind).
+        </p>
+      )}
+    </CardStyled>
   );
 };
 
