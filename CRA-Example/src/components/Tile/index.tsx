@@ -79,5 +79,4 @@ export default fetchPageData({
       </LoadingAnimation>
     ),
   },
-  // @ts-ignore
 })(Tile);
