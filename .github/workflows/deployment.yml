@@ -21,7 +21,7 @@ jobs:
         strip_components: 1
     - uses: actions/setup-node@v1
       with:
-          node-version: '12.14.0'
+          node-version: '12.22.0'
     - name: yarn install and build
       run: |
         echo -e " @k2:registry=https://registry.npmjs.org \n ${{ secrets.NPM_RC }} \n always-auth=true  \n" > .npmrc
